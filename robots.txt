@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abdelfettahundertaker-cpu.github.io/rempirestone/sitemap.xml
