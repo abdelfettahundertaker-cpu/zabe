@@ -951,7 +951,8 @@
       'Duo crema royale',
       'Duo casa naturel tables basses marbre',
       'Duo travertin table basse',
-      'Duo taza naturel tables basses marbre',
+      'Duo blanc Ibiza',
+      'Duo crema marfil tables basses',
       'Table basse astra',
       'Table basse celya bois',
       'Table basse esmee',
@@ -977,11 +978,11 @@
       'Tables basses trio celya bois',
       'Trio crema royale',
       'Trio moka',
-      'Taza naturel table basse marbre',
+      'Crema Marfil table basse',
       'Trio casa naturel tables basses marbre',
       'Trio gris thundra',
       'Trio tables basses en travertin nouma',
-      'Trio taza naturel tables basses marbre'
+      'Trio crema marfil tables basses'
     ];
 
     const officialTableBasseProducts = officialTableBasseNames
@@ -1253,7 +1254,6 @@
           : category === 'tables-basses'
           ? [
               'Hauteur : 45 cm (standard)',
-              'Rendement : 110 cm (standard)',
               'Dimensions : sur mesure selon le client',
               'Finition : sur commande'
             ]
@@ -1263,6 +1263,9 @@
     }
 
     function buildSmartProductDescription(productData, category, cleanDescriptionText, cleanChairDescription) {
+      const specialDescription = getSpecialModelDescription(productData.title);
+      if (specialDescription) return specialDescription;
+
       if (category === 'chaises' && (/\bdh\b/i.test(cleanDescriptionText) || !cleanDescriptionText)) {
         return cleanChairDescription;
       }
@@ -1276,13 +1279,7 @@
       }
 
       if (category === 'tables-basses') {
-        if (/duo/i.test(productData.title || '')) {
-          return `${productData.title} est un ensemble duo de tables basses concu pour donner du rythme au salon avec deux volumes complementaires.`;
-        }
-        if (/trio/i.test(productData.title || '')) {
-          return `${productData.title} est un ensemble trio de tables basses ideal pour une composition coordonnee, pratique et visuellement raffinee.`;
-        }
-        return `${productData.title} est une table basse sur mesure au rendu mineral, adaptee a un interieur haut de gamme et confortable.`;
+        return buildCoffeeTableDescription(productData.title || 'Ce modele');
       }
 
       if (category === 'tables-appoint') {
@@ -1290,6 +1287,35 @@
       }
 
       return cleanDescriptionText || `${productData.title} est un produit Empire Stone fabrique sur commande, avec une finition soignee et des dimensions adaptees a votre projet.`;
+    }
+
+    function buildCoffeeTableDescription(title) {
+      const intro = /duo/i.test(title)
+        ? 'Ce duo est pense comme une piece maitresse pour structurer le salon avec deux volumes complementaires.'
+        : /trio/i.test(title)
+          ? 'Ce trio est pense comme une piece maitresse pour composer un salon dynamique, raffine et pratique au quotidien.'
+          : 'Ce modele solo est pense comme une piece maitresse, elegante et facile a placer dans le salon.';
+
+      return `${title} est fabrique par Empire Stone sur commande. ${intro} Chez Empire Stone, nous ne nous contentons pas de fabriquer des meubles ; nous creons votre piece maitresse. Ce modele est entierement personnalisable pour s'adapter a votre vision : dimensions au choix, depuis une configuration standard jusqu'a des mesures specifiques pour un grand espace, avec des diametres adaptes selon vos besoins ; hauteurs a la carte, du jeu de niveaux classique 40-45 cm a vos propres hauteurs pour un rendu visuel unique ; marbre au choix, Taza Grey, Carrare, Noir Galaxy, Toundra ou autre pierre naturelle ; couleur du bois au choix pour accorder la base cannelee a votre mobilier ou a votre sol, en noyer, chene, teinte naturelle ou sombre. Chaque table est une piece d'artisanat ou chaque cannelure est travaillee avec precision pour offrir un jeu d'ombre et de lumiere, couronne par un plateau en marbre noble. Transformez votre salon avec une piece qui vous ressemble. Contactez-nous pour configurer votre modele personnalise.`;
+    }
+
+    function getSpecialModelDescription(title) {
+      const source = normalizeCatalogText(title || '');
+      const specialModels = [
+        'cube tika marbre',
+        'table basse esmee',
+        'table basse honore travertin bois',
+        'table basse horus travertin',
+        'table basse travertin horus carre',
+        'table basse yara',
+        'table basse zana travertin',
+        'colones travertin zarok',
+        'colonne travertin zinaya'
+      ];
+
+      if (!specialModels.some(model => source.includes(model))) return '';
+
+      return `${title} est une creation Empire Stone au dessin sculptural, pensee pour apporter une presence forte sans alourdir le salon. Les proportions, la pierre et les finitions sont ajustables sur commande afin d'obtenir une piece harmonieuse avec votre espace. Chaque detail est travaille avec soin, de la base au plateau, pour offrir un rendu premium, durable et facile a integrer dans un interieur contemporain.`;
     }
 
     function resolveActiveFinishId(productData, finishes) {
