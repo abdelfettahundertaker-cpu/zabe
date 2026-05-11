@@ -117,13 +117,24 @@
     .product-cta {font-family: var(--font-ui); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy-700);}
     .product-add-cart {display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 16px; border: 0; border-radius: 13px; background: linear-gradient(135deg, var(--navy-700), var(--navy-900)); color: var(--paper); font-family: var(--font-ui); font-weight: 800; cursor: pointer; white-space: nowrap; transition: transform 180ms ease, box-shadow 180ms ease;}
     .product-add-cart:hover, .product-add-cart:focus-visible {transform: translateY(-2px); box-shadow: 0 14px 28px rgba(16, 91, 164, 0.2);}
+    .product-tech-button {display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 14px; border-radius: 13px; border: 1px solid rgba(18, 82, 146, 0.14); background: rgba(255,255,255,0.95); color: var(--navy-900); font-family: var(--font-ui); font-weight: 800; cursor: pointer; white-space: nowrap; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;}
+    .product-tech-button:hover, .product-tech-button:focus-visible {transform: translateY(-2px); border-color: rgba(21, 111, 190, 0.28); box-shadow: 0 14px 28px rgba(16, 91, 164, 0.12);}
     .shopify-buy-slot {min-width: 150px; min-height: 42px; display: flex; justify-content: flex-end;}
     .products-empty {display: none; margin-top: 26px; padding: 30px; border-radius: 24px; text-align: center; background: rgba(255, 255, 255, 0.76); border: 1px dashed rgba(18, 82, 146, 0.18); color: var(--ink-700); box-shadow: var(--shadow-soft);}
     .products-empty.is-visible {display: block;}
+    .technical-sheets-section {margin-top: 44px; padding: 32px; border-radius: var(--radius-lg); background: rgba(255,255,255,0.94); border: 1px solid rgba(18, 82, 146, 0.08); box-shadow: var(--shadow-soft);}
+    .technical-sheets-section[hidden] {display: none;}
+    .technical-sheets-header {display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 24px;}
+    .technical-sheets-header h2 {font-family: var(--font-display); font-size: clamp(2rem, 3vw, 3.2rem); line-height: 0.96; letter-spacing: -0.02em;}
+    .technical-sheets-header p {color: var(--ink-700); margin-top: 8px;}
+    .technical-sheets-close {border: 1px solid rgba(18, 82, 146, 0.14); background: rgba(255,255,255,0.95); color: var(--navy-900); border-radius: 999px; min-height: 40px; padding: 0 16px; cursor: pointer; font-weight: 800;}
+    .technical-sheets-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 22px;}
+    .technical-sheet-large {overflow: hidden; border-radius: 18px; background: #fff; border: 1px solid rgba(18, 82, 146, 0.1);}
+    .technical-sheet-large img {width: 100%; max-height: 1100px; object-fit: contain; background: #fff;}
     .footer {padding: 60px 0 30px;}
     .footer small {color: var(--ink-700);}
     @media (max-width: 980px) {.products-grid {grid-template-columns: repeat(2, minmax(0, 1fr));}.section-heading {flex-direction: column; align-items: flex-start;}.category-showcase {grid-template-columns: repeat(2, minmax(0, 1fr));}}
-    @media (max-width: 700px) {.nav-shell {flex-wrap: wrap;}.main-nav {gap: 16px; flex-wrap: wrap;}.products-grid {grid-template-columns: 1fr;}.products-toolbar {grid-template-columns: 1fr;}.search-bar {flex-direction: column;}.section-heading {gap: 16px;}.category-showcase {grid-template-columns: 1fr;}.product-card-footer {align-items: stretch; flex-direction: column;}.product-add-cart {width: 100%;}}
+    @media (max-width: 700px) {.nav-shell {flex-wrap: wrap;}.main-nav {gap: 16px; flex-wrap: wrap;}.products-grid {grid-template-columns: 1fr;}.products-toolbar {grid-template-columns: 1fr;}.search-bar {flex-direction: column;}.section-heading {gap: 16px;}.category-showcase {grid-template-columns: 1fr;}.product-card-footer {align-items: stretch; flex-direction: column;}.product-add-cart,.product-tech-button {width: 100%;}.technical-sheets-header {flex-direction: column;}}
   </style>
 </head>
 <body>
@@ -242,6 +253,17 @@
         </div>
         <div class="products-grid" data-products-grid></div>
         <div class="products-empty" data-products-empty>Aucun produit ne correspond &agrave; votre recherche. Essayez une autre couleur ou un autre mot-cl&eacute;.</div>
+        <section class="technical-sheets-section" data-technical-sheets-section hidden>
+          <div class="technical-sheets-header">
+            <div>
+              <span class="section-tag">Fiches techniques</span>
+              <h2 data-technical-sheets-title>Voir plus de modeles</h2>
+              <p data-technical-sheets-copy>Les fiches techniques apparaissent ici en grand format.</p>
+            </div>
+            <button class="technical-sheets-close" type="button" data-technical-sheets-close>Fermer</button>
+          </div>
+          <div class="technical-sheets-grid" data-technical-sheets-grid></div>
+        </section>
       </div>
     </section>
   </main>
@@ -762,7 +784,7 @@
       ...overrides
     });
 
-const createSupplementalCeramicGroup = (title, files, overrides = {}) => createSupplementalBaseGroup(title, files, {
+const createSupplementalCeramicGroup = (title, files, overrides = {}) => createSupplementalBaseGroup(title, [...files, hardstoneTechnicalSheet], {
       label: 'Table a manger en hard stone',
       category: 'hardstone-ceramiques',
       categoryLabel: 'Table a manger en hard stone',
@@ -800,6 +822,8 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
     const latestModificationsFolder = 'dernieres modificaions';
     const blancIbizaDiningFolder = 'table manger blanc ibiza 4 personnes';
     const trioCremaRoyaleFolder = 'triocremaroyaletablebasse';
+    const technicalSheetsFolder = 'nouvelle photo fiche techniques';
+    const hardstoneTechnicalSheet = {folder: technicalSheetsFolder, file: 'fiche technique tables hardstones.png'};
     const supplementalProductGroups = [
       createSupplementalCeramicGroup('Lysandra', [
         'aurelian 6 ou 8 personnes ceramiques.png',
@@ -887,7 +911,7 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       createSupplementalDiningGroup('Table de repas leonie', [
         'table repas leonie .png'
       ], {color: 'beige', colorLabel: 'Crema Marfil', priceValue: 9500}),
-      createSupplementalDiningGroup('Table de repas java', [
+      createSupplementalDiningGroup('Table a manger java', [
         'table repas java.png'
       ], {color: 'beige', colorLabel: 'Crema Marfil', priceValue: 6500}),
 
@@ -897,7 +921,7 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       createSupplementalDiningGroup('Table de repas solea', [
         'solea table repas.png'
       ], {color: 'travertin', colorLabel: 'Travertin', priceValue: 8500}),
-      createSupplementalDiningGroup('Table de repas en travertin', [
+      createSupplementalDiningGroup('Table a manger en travertin', [
         'table de repas en traveertin.png'
       ], {color: 'travertin', colorLabel: 'Travertin', priceValue: 9500}),
       createSupplementalDiningGroup('Table de repas Massa', [
@@ -1045,25 +1069,37 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         'Tables basses trio moka beton cire bois4.png'
       ], {color: 'marron', colorLabel: 'Marron Imperial', priceValue: 3600}),
 
+      createSupplementalBaseGroup('Banane noir absolu bois', [
+        'banane table basse s noir absolu.png'
+      ], {
+        folder: technicalSheetsFolder,
+        color: 'noir',
+        colorLabel: 'Noir Absolu',
+        priceValue: 3500,
+        description: 'Transformez votre salon avec nos tables basses en marbre naturel et bois noble, concues pour apporter elegance, modernite et prestige a votre interieur. Design moderne et haut de gamme, marbre naturel premium, structure bois massif finition luxe, fabrication raffinee et durable. Ideal pour salons modernes et villas de prestige. Finitions disponibles : Marbre Noir Khnefra, Crema Royale, Crema Marfil, Noir Absolu et Blanc Carrara. Disponible chez Empire Stone pour dimensions, personnalisation et commandes.'
+      }),
+
       // ===== Nouveaux produits depuis "dernieres modificaions" =====
-      createSupplementalDiningGroup('Table a manger blanc ibiza', [
-        'blanc ibiza table a manger.jpeg',
-        'table a manger blanc ibiza  1.jpeg',
-        'table a manger blanc ibiza 2.jpeg',
-        'table a manger blanc ibiza 5800 dh.jpeg',
-        'table a manger ibiza 3.jpeg',
-        'table anger blanc ibiza 100 3d bois 4 personne.jpeg',
-        'table anger blanc ibiza 100.jpeg',
+      createSupplementalDiningGroup('Table a manger blanc ibiza modele rond', [
         'table manger blanc ibiza 5800 dh 2.jpeg'
+      ], {folder: latestModificationsFolder, color: 'blanc', colorLabel: 'Blanc Ibiza', priceValue: 4300}),
+
+      createSupplementalDiningGroup('Table a manger blanc ibiza rond bois 3d', [
+        'table anger blanc ibiza 100 3d bois 4 personne.jpeg'
+      ], {folder: latestModificationsFolder, color: 'blanc', colorLabel: 'Blanc Ibiza', priceValue: 4500}),
+
+      createSupplementalDiningGroup('Table a manger blanc ibiza 4 personnes', [
+        'table a manger blanc ibiza  1.jpeg',
+        'table a manger blanc ibiza 5800 dh.jpeg'
       ], {folder: latestModificationsFolder, color: 'blanc', colorLabel: 'Blanc Ibiza', priceValue: 5800}),
 
-      createSupplementalDiningGroup('Table a manger blanc ibiza', [
+      createSupplementalDiningGroup('Table a manger blanc ibiza 4 personnes rond', [
         'blanc ibiza table a manger.jpeg',
         'table a manger 4.jpeg',
         'table a manger blanc ibiza 2.jpeg',
         'table a manger ibiza 3.jpeg',
-        'table manger blanc ibiza 5800 dh 2          4 personnes.jpeg'
-      ], {folder: blancIbizaDiningFolder, color: 'blanc', colorLabel: 'Blanc Ibiza', priceValue: 5800}),
+        'blac ibiza table manger 4 personnes fiches techniques.jpeg'
+      ], {folder: blancIbizaDiningFolder, color: 'blanc', colorLabel: 'Blanc Ibiza', priceValue: 4300}),
 
       createSupplementalDiningGroup('Table a manger blanc arabiscato', [
         'table a manger blanc arabiscato2.jpeg',
@@ -1136,8 +1172,9 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
     const workspaceProducts = expandMediaProductGroups(workspaceProductGroups, group => group.folder);
 
     function expandMediaProductGroups(groups, getFolder) {
-      return groups.flatMap(group => group.files.map(fileName => {
-        const folder = getFolder(group);
+      return groups.flatMap(group => group.files.map(fileEntry => {
+        const fileName = typeof fileEntry === 'object' ? fileEntry.file : fileEntry;
+        const folder = typeof fileEntry === 'object' ? fileEntry.folder || getFolder(group) : getFolder(group);
         const product = {
           src: encodeURI(`${folder}/${fileName}`),
           alt: fileName.replace(/\.[^.]+$/, ''),
@@ -1176,6 +1213,11 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
     const productsEmpty = document.querySelector('[data-products-empty]');
     const searchInput = document.querySelector('[data-search-input]');
     const filterButtons = Array.from(document.querySelectorAll('.filter-chip'));
+    const technicalSheetsSection = document.querySelector('[data-technical-sheets-section]');
+    const technicalSheetsTitle = document.querySelector('[data-technical-sheets-title]');
+    const technicalSheetsCopy = document.querySelector('[data-technical-sheets-copy]');
+    const technicalSheetsGrid = document.querySelector('[data-technical-sheets-grid]');
+    const technicalSheetsClose = document.querySelector('[data-technical-sheets-close]');
 
     function normalizeText(text) {
       return (text || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -1389,6 +1431,28 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         next.category = 'tables-repas';
       }
 
+      if (source.includes('table repas java') || source.includes('table de repas java')) {
+        next.title = 'Table a manger java';
+        next.category = 'tables-repas';
+      }
+
+      if (source.includes('table de repas en traveertin') || source.includes('table de repas en travertin')) {
+        next.title = 'Table a manger en travertin';
+        next.category = 'tables-repas';
+        next.color = 'travertin';
+        next.colorLabel = 'Travertin';
+      }
+
+      if (
+        source.includes('dernieres modificaions table a manger 4 jpeg') ||
+        source.includes('dernieres modificaions/table a manger 4 jpeg')
+      ) {
+        next.title = 'Table a manger 4 personnes';
+        next.category = 'tables-repas';
+        next.label = 'Tables a manger';
+        next.categoryLabel = 'Tables a manger';
+      }
+
       if (source.includes('table basse travertin zoe')) {
         next.title = 'Table basse travertin zoe';
         next.category = 'tables-basses';
@@ -1404,6 +1468,30 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       }
 
       // "enlever beton" (option 1) => on supprime le mot "beton" du titre affiché
+      if (source.includes('table anger blanc ibiza 100 3d bois 4 personne')) {
+        next.title = 'Table a manger blanc ibiza rond bois 3d';
+        next.category = 'tables-repas';
+        next.color = 'blanc';
+        next.colorLabel = 'Blanc Ibiza';
+      }
+
+      if (source.includes('table manger blanc ibiza 4 personnes')) {
+        next.title = 'Table a manger blanc ibiza 4 personnes rond';
+        next.category = 'tables-repas';
+        next.color = 'blanc';
+        next.colorLabel = 'Blanc Ibiza';
+      }
+
+      if (
+        source.includes('table a manger blanc ibiza 1') ||
+        source.includes('table a manger blanc ibiza 5800 dh')
+      ) {
+        next.title = 'Table a manger blanc ibiza 4 personnes';
+        next.category = 'tables-repas';
+        next.color = 'blanc';
+        next.colorLabel = 'Blanc Ibiza';
+      }
+
       if (next.title && /moka\s+beton\s+cire\s+bois/i.test(next.title)) {
         next.title = next.title.replace(/moka\s+beton\s+cire\s+bois/i, 'moka cire bois');
       }
@@ -1445,6 +1533,9 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
 
     function extractPhotoOrder(src) {
       const baseName = getImageBaseName(src);
+      const normalizedBaseName = normalizeProductSignature(baseName);
+      if (normalizedBaseName.includes('table manger hardstone celia')) return 0;
+      if (normalizedBaseName.includes('fiche technique tables hardstones')) return 900;
       const match = baseName.match(/(\d+)(?!.*\d)/);
       return match ? Number.parseInt(match[1], 10) : 999;
     }
@@ -1577,6 +1668,30 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
     function getDiningDetails(product) {
       const source = normalizeText(product.title).toLowerCase();
       const models = [
+        {
+          keywords: ['table', 'a', 'manger', '4', 'personnes'],
+          description: 'Table a manger pensee pour quatre personnes, avec des dimensions adaptees a un coin repas compact et elegant.',
+          capacity: '4 personnes',
+          length: 'sur commande',
+          width: 'au choix',
+          height: '75 cm'
+        },
+        {
+          keywords: ['blanc', 'ibiza', '4', 'personnes', 'rond'],
+          description: 'Table a manger ronde en Blanc Ibiza, pensee pour quatre personnes avec une finition claire et elegante.',
+          capacity: '4 personnes',
+          length: 'sur commande',
+          width: 'au choix',
+          height: '75 cm'
+        },
+        {
+          keywords: ['blanc', 'ibiza', 'modele', 'rond'],
+          description: 'Table a manger ronde en Blanc Ibiza, pensee pour quatre personnes avec une finition claire et elegante.',
+          capacity: '4 personnes',
+          length: 'sur commande',
+          width: 'au choix',
+          height: '75 cm'
+        },
         {
           keywords: ['massa'],
           description: 'Table de repas en chene teinte au design contemporain, pensee pour conjuguer puissance, chaleur et raffinement autour d une grande salle a manger.',
@@ -1909,6 +2024,8 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       if (product.category === 'tables-repas') {
         const source = normalizeProductSignature(`${product.title || ''} ${product.alt || ''} ${product.coverAlt || ''}`);
         const diningPriceRules = [
+          {keywords: ['blanc', 'ibiza', '4', 'personnes', 'rond'], value: 4300},
+          {keywords: ['blanc', 'ibiza', 'modele', 'rond'], value: 4300},
           {keywords: ['guatemala', 'vue', '1'], value: 5500},
           {keywords: ['guatemala', 'vue', '2'], value: 4600},
           {keywords: ['balzac'], value: 4800},
@@ -1944,6 +2061,7 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         'duo crema royale': 2600,
         'duo travertin table basse': 2600,
         'duo blanc ibiza': 2700,
+        'banane noir absolu bois': 3500,
         'trio crema royale': 3600,
 
         // ==== Moka béton (enlever "beton" => normalisation titre déjà faite dans canonicalizeProductData) ====
@@ -2135,6 +2253,7 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         .replace(/\bmarrakech\d*\b/gi, ' ')
         .replace(/\b(?:kasbah|kasba)\d*\b/gi, ' ')
         .replace(/\d+/g, ' ')
+        .replace(/\bbois\s+d\b/gi, 'bois 3d')
         .replace(/[()]/g, ' ')
         .replace(/\s{2,}/g, ' ')
         .trim();
@@ -2172,6 +2291,67 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
     function getSafeImageSrc(src) {
       const value = String(src || '').trim();
       return value && !value.includes('${') ? value : fallbackImage;
+    }
+
+    function getProductTechnicalSheets(product) {
+      const source = normalizeProductSignature([
+        product.category,
+        product.title,
+        product.slug,
+        product.cover,
+        product.coverAlt,
+        ...(product.photos || []).flatMap(photo => [photo.src, photo.alt])
+      ].join(' '));
+      const sheets = [];
+
+      if (product.category === 'hardstone-ceramiques') {
+        sheets.push({
+          src: encodeURI(`${technicalSheetsFolder}/fiche technique tables hardstones.png`),
+          alt: 'Fiche technique tables hardstones'
+        });
+      }
+
+      if (
+        source.includes('blanc ibiza')
+        && (
+          source.includes('4 personnes rond') ||
+          source.includes('personnes rond') ||
+          source.includes('table manger blanc ibiza 4 personnes') ||
+          source.includes('blac ibiza table manger 4 personnes')
+        )
+      ) {
+        sheets.push({
+          src: encodeURI(`${blancIbizaDiningFolder}/blac ibiza table manger 4 personnes fiches techniques.jpeg`),
+          alt: 'Fiche technique table a manger blanc Ibiza 4 personnes'
+        });
+      }
+
+      const seen = new Set();
+      return sheets.filter(sheet => {
+        const key = sheet.src.toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function showProductTechnicalSheets(product) {
+      const sheets = getProductTechnicalSheets(product);
+      if (!sheets.length || !technicalSheetsSection || !technicalSheetsGrid) return;
+
+      technicalSheetsTitle.textContent = product.title;
+      technicalSheetsCopy.textContent = 'Fiche technique affichee en grand format.';
+      technicalSheetsGrid.innerHTML = sheets.map(sheet => `
+        <figure class="technical-sheet-large">
+          <img src="${getSafeImageSrc(sheet.src)}" alt="${sheet.alt}" loading="lazy" />
+        </figure>
+      `).join('');
+
+      technicalSheetsSection.hidden = false;
+      Array.from(technicalSheetsGrid.querySelectorAll('img')).forEach(image => {
+        image.addEventListener('error', handleImageError);
+      });
+      technicalSheetsSection.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
 
     function getShopifyButtonOptions() {
@@ -2298,6 +2478,7 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       const photoLabel = `${product.photoCount} photo${product.photoCount > 1 ? 's' : ''}`;
       const coverSrc = getSafeImageSrc(product.cover);
       const coverAlt = product.coverAlt || product.title;
+      const hasTechnicalSheets = getProductTechnicalSheets(product).length > 0;
 
       article.innerHTML = `
         <a class="product-link" href="product.html?slug=${product.slug}">
@@ -2316,6 +2497,7 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         </a>
         <div class="product-card-footer">
           ${product.priceBadge ? `<span class="product-cta" style="color: var(--ink-950); letter-spacing: 0; text-transform:none; font-size: 1.25rem; font-weight: 800;">${product.priceBadge}</span>` : `<span class="product-cta">Voir fiche</span>`}
+          ${hasTechnicalSheets ? '<button class="product-tech-button" type="button" data-technical-sheet-button>Voir plus de modeles</button>' : ''}
           ${product.shopifyProductId
             ? `<div class="shopify-buy-slot" id="${product.shopifyComponentId || `shopify-${product.slug}`}" data-shopify-buy-button data-shopify-product-id="${product.shopifyProductId}"><button class="product-add-cart" type="button">Ajouter au panier</button></div>`
             : '<button class="product-add-cart" type="button">Ajouter au panier</button>'}
@@ -2324,6 +2506,9 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       article.querySelector('img')?.addEventListener('error', handleImageError);
       article.querySelector('.product-add-cart')?.addEventListener('click', () => {
         addProductToCart(product);
+      });
+      article.querySelector('[data-technical-sheet-button]')?.addEventListener('click', () => {
+        showProductTechnicalSheets(product);
       });
       return article;
     }
@@ -2411,6 +2596,12 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         setActiveFilter(group, button.dataset.filterValue);
         updateProducts();
       });
+    });
+
+    technicalSheetsClose?.addEventListener('click', () => {
+      if (technicalSheetsSection) {
+        technicalSheetsSection.hidden = true;
+      }
     });
 
     searchInput.addEventListener('input', updateProducts);

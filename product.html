@@ -386,6 +386,47 @@
       color: var(--ink-950);
     }
 
+    .technical-sheet-actions {
+      margin-top: 22px;
+    }
+
+    .technical-sheet-panel {
+      margin-top: 34px;
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(16, 54, 102, 0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .technical-sheet-panel[hidden] {
+      display: none;
+    }
+
+    .technical-sheet-panel h2 {
+      margin-bottom: 20px;
+    }
+
+    .technical-sheet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+      gap: 22px;
+    }
+
+    .technical-sheet-image {
+      overflow: hidden;
+      border-radius: 18px;
+      background: #f7fbff;
+      border: 1px solid rgba(16, 54, 102, 0.1);
+    }
+
+    .technical-sheet-image img {
+      width: 100%;
+      max-height: 980px;
+      object-fit: contain;
+      background: #fff;
+    }
+
     .ceramic-sizing-panel {
       margin-top: 26px;
       padding: 22px;
@@ -893,6 +934,9 @@
     const latestModificationsFolder = 'dernieres modificaions';
     const blancIbizaDiningFolder = 'table manger blanc ibiza 4 personnes';
     const trioCremaRoyaleFolder = 'triocremaroyaletablebasse';
+    const technicalSheetsFolder = 'nouvelle photo fiche techniques';
+    const hardstoneTechnicalSheet = `${technicalSheetsFolder}/fiche technique tables hardstones.png`;
+    const blancIbizaTechnicalSheet = `${blancIbizaDiningFolder}/blac ibiza table manger 4 personnes fiches techniques.jpeg`;
     const shopifyBuyConfig = {
       domain: 'arhh00-dp.myshopify.com',
       storefrontAccessToken: 'd2e68b6e6f17e94bcabde7491b30cc62',
@@ -1061,14 +1105,44 @@
       const sourcePhotos = hasSupplementalMedia
         ? productData.photos.filter(photo => isSupplementalCatalogPhoto(photo.src))
         : productData.photos;
+      const isOldBlancIbizaMergedGroup = category === 'tables-repas'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('table a manger blanc ibiza vues et');
+      const allowedOldBlancIbizaPhotos = new Set([
+        'table a manger blanc ibiza  1',
+        'table a manger blanc ibiza 5800 dh'
+      ]);
       const seen = new Set();
 
-      return sourcePhotos.filter(photo => {
+      const photos = sourcePhotos.filter(photo => {
+        if (isOldBlancIbizaMergedGroup) {
+          const baseName = decodeURIComponent(photo.src || '')
+            .split('/')
+            .pop()
+            ?.replace(/\.[^.]+$/, '')
+            .toLowerCase() || '';
+          if (!allowedOldBlancIbizaPhotos.has(baseName)) return false;
+        }
+
         const key = decodeURIComponent(photo.src || '').toLowerCase();
         if (seen.has(key)) return false;
         seen.add(key);
         return true;
       });
+
+      const isCeliaHardstone = category === 'hardstone-ceramiques'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('celia');
+
+      if (isCeliaHardstone) {
+        photos.sort((left, right) => {
+          const leftName = normalizeCatalogSignature(decodeURIComponent(left.src || ''));
+          const rightName = normalizeCatalogSignature(decodeURIComponent(right.src || ''));
+          const leftOrder = leftName.includes('table manger hardstone celia') ? 0 : leftName.includes('fiche technique tables hardstones') ? 900 : 500;
+          const rightOrder = rightName.includes('table manger hardstone celia') ? 0 : rightName.includes('fiche technique tables hardstones') ? 900 : 500;
+          return leftOrder - rightOrder;
+        });
+      }
+
+      return photos;
     }
 
     function findOfficialCatalogTableBasseName(productData) {
@@ -1207,6 +1281,39 @@
         ).replace(/\btables?\s+repas\b/gi, match =>
           match.toLowerCase().startsWith('tables') ? 'Tables a manger' : 'Table a manger'
         ).replace(/\bsidi\s+ghanem\b/gi, '').replace(/\s{2,}/g, ' ').trim();
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''}`).includes('table a manger blanc ibiza vues et')) {
+          organizedProduct.title = 'Table a manger blanc ibiza 4 personnes';
+        }
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table a manger blanc ibiza 5800 dh')) {
+          organizedProduct.title = 'Table a manger blanc ibiza 4 personnes';
+        }
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table manger blanc ibiza 5800 dh 2')) {
+          organizedProduct.title = 'Table a manger blanc ibiza modele rond';
+        }
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table manger blanc ibiza 4 personnes')) {
+          organizedProduct.title = 'Table a manger blanc ibiza 4 personnes rond';
+        }
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table anger blanc ibiza 100 3d bois 4 personne')) {
+          organizedProduct.title = 'Table a manger blanc ibiza rond bois 3d';
+        }
+        if (/table\s+manger\s+blanc\s+ibiza\s+rond\s+bois\s+d\b/i.test(organizedProduct.title)) {
+          organizedProduct.title = 'Table a manger blanc ibiza rond bois 3d';
+        }
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table repas java')) {
+          organizedProduct.title = 'Table a manger java';
+        }
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table de repas en traveertin')) {
+          organizedProduct.title = 'Table a manger en travertin';
+        }
+        if (
+          /^Table a manger personnes$/i.test(organizedProduct.title || '') ||
+          normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('dernieres modificaions table a manger 4 jpeg')
+        ) {
+          organizedProduct.title = 'Table a manger 4 personnes';
+          organizedProduct.category = 'tables-repas';
+          organizedProduct.label = 'Tables a manger';
+          organizedProduct.categoryLabel = 'Tables a manger';
+        }
       }
 
       const cleanDescriptionText = description
@@ -1215,14 +1322,28 @@
         .replace(/\bsidi\s+ghanem\b/gi, '')
         .replace(/\s{2,}/g, ' ')
         .trim();
+      const sourceForPrice = normalizeCatalogText(`${organizedProduct.title || ''} ${organizedProduct.coverAlt || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`);
+      const isBlancIbizaRoundDining = category === 'tables-repas'
+        && sourceForPrice.includes('blanc ibiza')
+        && (
+          sourceForPrice.includes('4 personnes rond') ||
+          sourceForPrice.includes('modele rond') ||
+          sourceForPrice.includes('table manger blanc ibiza 4 personnes')
+        );
+      const isFourPersonDining = category === 'tables-repas'
+        && normalizeCatalogSignature(`${organizedProduct.title || ''} ${organizedProduct.slug || ''}`).includes('table a manger 4 personnes');
       const cleanMeasurements = Array.isArray(organizedProduct.measurements)
         ? organizedProduct.measurements.map(line => {
+            if ((isBlancIbizaRoundDining || isFourPersonDining) && /^Capacite\s*:/i.test(line)) return 'Capacite : 4 personnes';
             if (category !== 'tables-repas' || !/^Largeur\s*:/i.test(line)) return line;
             return /leonie/i.test(organizedProduct.title || '') ? 'Largeur : 90 cm' : 'Largeur : au choix';
           })
         : organizedProduct.measurements;
-      const sourceForPrice = normalizeCatalogText(`${organizedProduct.title || ''} ${organizedProduct.coverAlt || ''} ${organizedProduct.cover || ''}`);
-      const forcedPricing = sourceForPrice.includes('bois noir absolu')
+      const forcedPricing = isBlancIbizaRoundDining
+        ? {badge: '4300 dh', value: 4300}
+        : sourceForPrice.includes('table anger blanc ibiza 100 3d bois 4 personne')
+        ? {badge: '4500 dh', value: 4500}
+        : sourceForPrice.includes('bois noir absolu')
         ? {badge: '4500 dh', value: 4500}
         : null;
       const shopifyProductId = organizedProduct.shopifyProductId || (sourceForPrice.includes('balzac') ? '10438391333157' : '');
@@ -1546,6 +1667,24 @@
       const activeFinish = finishes.find(finish => finish.id === activeFinishId) || null;
       const finishCards = finishes.map((finish, index) => renderColorOption(finish, activeFinishId, index)).join('');
       const coverSrc = getSafeImageSrc(productData.cover);
+      const technicalSheets = getTechnicalSheets(productData);
+      const technicalSheetButton = technicalSheets.length
+        ? '<div class="technical-sheet-actions"><button class="btn btn-secondary" type="button" id="technical-sheet-toggle">Voir plus de modele</button></div>'
+        : '';
+      const technicalSheetSection = technicalSheets.length
+        ? `
+        <section class="technical-sheet-panel" id="technical-sheet-panel" hidden>
+          <h2>Fiche technique</h2>
+          <div class="technical-sheet-grid">
+            ${technicalSheets.map(sheet => `
+              <figure class="technical-sheet-image">
+                <img src="${getSafeImageSrc(sheet.src)}" alt="${sheet.alt}" loading="lazy" />
+              </figure>
+            `).join('')}
+          </div>
+        </section>
+        `
+        : '';
       const thumbnails = productData.photos.map((photo, index) => `
         <button class="thumb-button${index === 0 ? ' is-active' : ''}" type="button" data-thumb-index="${index}">
           <img src="${getSafeImageSrc(photo.src)}" alt="${photo.alt}" loading="lazy" />
@@ -1600,6 +1739,7 @@
                 <strong>${productData.photoCount} vue${productData.photoCount > 1 ? 's' : ''}</strong>
               </div>
             </div>
+            ${technicalSheetButton}
 
             <form class="order-form" id="product-order-form">
               <div class="form-section">
@@ -1659,6 +1799,7 @@
             </form>
           </div>
         </section>
+        ${technicalSheetSection}
       `;
 
       Array.from(page.querySelectorAll('img')).forEach(image => {
@@ -1666,8 +1807,51 @@
       });
 
       bindGallery(productData.photos);
+      bindTechnicalSheet();
       bindQuoteForm(productData, finishes);
       mountShopifyBuyButtons(page);
+    }
+
+    function getTechnicalSheets(productData) {
+      const source = normalizeCatalogSignature([
+        productData.category,
+        productData.title,
+        productData.slug,
+        productData.cover,
+        productData.coverAlt,
+        ...(productData.photos || []).flatMap(photo => [photo.src, photo.alt])
+      ].join(' '));
+      const sheets = [];
+
+      if (productData.category === 'hardstone-ceramiques') {
+        sheets.push({
+          src: hardstoneTechnicalSheet,
+          alt: 'Fiche technique tables hardstones'
+        });
+      }
+
+      if (
+        source.includes('blanc ibiza')
+        && (
+          source.includes('4 personnes rond') ||
+          source.includes('personnes rond') ||
+          source.includes('table manger blanc ibiza 4 personnes') ||
+          source.includes('blac ibiza table manger 4 personnes')
+        )
+      ) {
+        sheets.push({
+          src: blancIbizaTechnicalSheet,
+          alt: 'Fiche technique table manger blanc Ibiza 4 personnes'
+        });
+      }
+
+      const seen = new Set();
+      return sheets.filter(sheet => {
+        const key = sheet.src.toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
     }
 
     function createMeasurementFields(productData) {
@@ -1834,6 +2018,21 @@
           buttons.forEach(item => item.classList.remove('is-active'));
           button.classList.add('is-active');
         });
+      });
+    }
+
+    function bindTechnicalSheet() {
+      const button = document.getElementById('technical-sheet-toggle');
+      const panel = document.getElementById('technical-sheet-panel');
+      if (!button || !panel) return;
+
+      button.addEventListener('click', () => {
+        const shouldShow = panel.hasAttribute('hidden');
+        panel.toggleAttribute('hidden', !shouldShow);
+        button.textContent = shouldShow ? 'Masquer la fiche technique' : 'Voir plus de modele';
+        if (shouldShow) {
+          panel.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
       });
     }
 
