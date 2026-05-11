@@ -957,6 +957,16 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       createSupplementalBaseGroup('Duo travertin tables basses', [
         'duo travertin.jpeg'
       ], {color: 'travertin', colorLabel: 'Travertin', priceValue: 2600}),
+      createSupplementalBaseGroup('Duo gris benslimane', [
+        'duo fiche techniques 1.jpeg',
+        'duo gris benslimane 1.png',
+        'duo fiche techniques 2.jpeg'
+      ], {
+        folder: trioCremaRoyaleFolder,
+        color: 'gris',
+        colorLabel: 'Gris Benslimane',
+        description: 'Ce duo est pense comme une piece maitresse pour structurer le salon avec deux volumes complementaires. Transformez votre salon avec une piece qui vous ressemble : dimensions, hauteurs, marbre et finition bois peuvent etre personnalises sur commande.'
+      }),
 
       createSupplementalBaseGroup('Table basse celya bois', [
         'Table basse celya bois1.png',
@@ -1070,11 +1080,22 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       ], {color: 'marron', colorLabel: 'Marron Imperial', priceValue: 3600}),
 
       createSupplementalBaseGroup('Banane noir absolu bois', [
+        'banane marbre table basses diff.jpeg',
         'banane table basse s noir absolu.png'
       ], {
         folder: technicalSheetsFolder,
         color: 'noir',
         colorLabel: 'Noir Absolu',
+        priceValue: 3500,
+        description: 'Transformez votre salon avec nos tables basses en marbre naturel et bois noble, concues pour apporter elegance, modernite et prestige a votre interieur. Design moderne et haut de gamme, marbre naturel premium, structure bois massif finition luxe, fabrication raffinee et durable. Ideal pour salons modernes et villas de prestige. Finitions disponibles : Marbre Noir Khnefra, Crema Royale, Crema Marfil, Noir Absolu et Blanc Carrara. Disponible chez Empire Stone pour dimensions, personnalisation et commandes.'
+      }),
+      createSupplementalBaseGroup('Banane blanc ibiza bois', [
+        'banane blanc ibiza.jpeg',
+        {folder: technicalSheetsFolder, file: 'banane marbre table basses diff.jpeg'}
+      ], {
+        folder: trioCremaRoyaleFolder,
+        color: 'blanc',
+        colorLabel: 'Blanc Ibiza',
         priceValue: 3500,
         description: 'Transformez votre salon avec nos tables basses en marbre naturel et bois noble, concues pour apporter elegance, modernite et prestige a votre interieur. Design moderne et haut de gamme, marbre naturel premium, structure bois massif finition luxe, fabrication raffinee et durable. Ideal pour salons modernes et villas de prestige. Finitions disponibles : Marbre Noir Khnefra, Crema Royale, Crema Marfil, Noir Absolu et Blanc Carrara. Disponible chez Empire Stone pour dimensions, personnalisation et commandes.'
       }),
@@ -1310,6 +1331,17 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         return product;
       }
 
+      if (
+        source.includes('banane noir absolu bois') ||
+        source.includes('banane blanc ibiza bois') ||
+        source.includes('banane table basse') ||
+        source.includes('banane marbre table basses diff') ||
+        source.includes('duo gris benslimane') ||
+        source.includes('duo fiche techniques')
+      ) {
+        return setCategory(product, 'tables-basses');
+      }
+
       const officialTableBasseName = findOfficialTableBasseName(source);
       if (officialTableBasseName) {
         return setCategory({...product, title: officialTableBasseName}, 'tables-basses');
@@ -1414,6 +1446,31 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         next.category = 'tables-basses';
         next.color = 'travertin';
         next.colorLabel = 'Travertin';
+      }
+
+      if (source.includes('duo gris benslimane')) {
+        next.title = 'Duo gris benslimane';
+        next.category = 'tables-basses';
+        next.color = 'gris';
+        next.colorLabel = 'Gris Benslimane';
+      }
+
+      if (
+        source.includes('banane noir absolu bois') ||
+        source.includes('banane table basse s noir absolu') ||
+        source.includes('banane marbre table basses diff')
+      ) {
+        next.title = 'Banane noir absolu bois';
+        next.category = 'tables-basses';
+        next.color = 'noir';
+        next.colorLabel = 'Noir Absolu';
+      }
+
+      if (source.includes('banane blanc ibiza bois') || source.includes('banane blanc ibiza')) {
+        next.title = 'Banane blanc ibiza bois';
+        next.category = 'tables-basses';
+        next.color = 'blanc';
+        next.colorLabel = 'Blanc Ibiza';
       }
 
       if (
@@ -1535,6 +1592,11 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       const baseName = getImageBaseName(src);
       const normalizedBaseName = normalizeProductSignature(baseName);
       if (normalizedBaseName.includes('table manger hardstone celia')) return 0;
+      if (normalizedBaseName.includes('banane marbre table basses diff')) return 0;
+      if (normalizedBaseName.includes('banane table basse s noir absolu')) return 1;
+      if (normalizedBaseName.includes('duo fiche techniques 1')) return 0;
+      if (normalizedBaseName.includes('duo gris benslimane 1')) return 1;
+      if (normalizedBaseName.includes('duo fiche techniques 2')) return 2;
       if (normalizedBaseName.includes('fiche technique tables hardstones')) return 900;
       const match = baseName.match(/(\d+)(?!.*\d)/);
       return match ? Number.parseInt(match[1], 10) : 999;
@@ -1545,7 +1607,8 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
       return decoded.includes(`${supplementalMediaFolder.toLowerCase()}/`) ||
         decoded.includes(`${latestModificationsFolder.toLowerCase()}/`) ||
         decoded.includes(`${blancIbizaDiningFolder.toLowerCase()}/`) ||
-        decoded.includes(`${trioCremaRoyaleFolder.toLowerCase()}/`);
+        decoded.includes(`${trioCremaRoyaleFolder.toLowerCase()}/`) ||
+        decoded.includes(`${technicalSheetsFolder.toLowerCase()}/`);
     }
 
     function isLegacyDiningPhoto(src) {
@@ -2061,7 +2124,9 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
         'duo crema royale': 2600,
         'duo travertin table basse': 2600,
         'duo blanc ibiza': 2700,
+        'duo gris benslimane': 2600,
         'banane noir absolu bois': 3500,
+        'banane blanc ibiza bois': 3500,
         'trio crema royale': 3600,
 
         // ==== Moka béton (enlever "beton" => normalisation titre déjà faite dans canonicalizeProductData) ====
@@ -2206,6 +2271,15 @@ const createSupplementalCeramicGroup = (title, files, overrides = {}) => createS
           });
 
           group.photos.sort((left, right) => left.order - right.order || left.alt.localeCompare(right.alt, 'fr', {sensitivity: 'base'}));
+          const groupSignature = normalizeProductSignature(group.title || '');
+          if (groupSignature.includes('banane blanc ibiza bois')) {
+            group.photos.sort((left, right) => {
+              const leftName = normalizeProductSignature(decodeURIComponent(left.src || ''));
+              const rightName = normalizeProductSignature(decodeURIComponent(right.src || ''));
+              const getBananeBlancOrder = name => name.includes('banane blanc ibiza') ? 0 : 1;
+              return getBananeBlancOrder(leftName) - getBananeBlancOrder(rightName);
+            });
+          }
           group.cover = group.photos[0]?.src || fallbackImage;
           group.coverAlt = group.photos[0]?.alt || group.title;
           group.photoCount = group.photos.length;

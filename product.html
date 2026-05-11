@@ -1094,7 +1094,8 @@
       return decoded.includes(`${supplementalMediaFolder.toLowerCase()}/`) ||
         decoded.includes(`${latestModificationsFolder.toLowerCase()}/`) ||
         decoded.includes(`${blancIbizaDiningFolder.toLowerCase()}/`) ||
-        decoded.includes(`${trioCremaRoyaleFolder.toLowerCase()}/`);
+        decoded.includes(`${trioCremaRoyaleFolder.toLowerCase()}/`) ||
+        decoded.includes(`${technicalSheetsFolder.toLowerCase()}/`);
     }
 
     function normalizeCatalogPhotos(productData, category) {
@@ -1139,6 +1140,50 @@
           const leftOrder = leftName.includes('table manger hardstone celia') ? 0 : leftName.includes('fiche technique tables hardstones') ? 900 : 500;
           const rightOrder = rightName.includes('table manger hardstone celia') ? 0 : rightName.includes('fiche technique tables hardstones') ? 900 : 500;
           return leftOrder - rightOrder;
+        });
+      }
+
+      const isBananeNoirAbsolu = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('banane noir absolu bois');
+      const isBananeBlancIbiza = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('banane blanc ibiza bois');
+      const isDuoGrisBenslimane = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('duo gris benslimane');
+      const bananeDiffSrc = `${technicalSheetsFolder}/banane marbre table basses diff.jpeg`;
+      if ((isBananeNoirAbsolu || isBananeBlancIbiza) && !photos.some(photo => decodeURIComponent(photo.src || '').toLowerCase().endsWith('/banane marbre table basses diff.jpeg'))) {
+        photos.push({
+          src: bananeDiffSrc,
+          alt: 'Banane marbre table basses diff'
+        });
+      }
+      if (isDuoGrisBenslimane) {
+        [
+          'duo fiche techniques 1.jpeg',
+          'duo fiche techniques 2.jpeg'
+        ].forEach(fileName => {
+          if (!photos.some(photo => decodeURIComponent(photo.src || '').toLowerCase().endsWith(`/${fileName}`))) {
+            photos.push({
+              src: `${trioCremaRoyaleFolder}/${fileName}`,
+              alt: fileName.replace(/\.[^.]+$/, '')
+            });
+          }
+        });
+      }
+      if (isBananeNoirAbsolu || isBananeBlancIbiza || isDuoGrisBenslimane) {
+        photos.sort((left, right) => {
+          const leftName = normalizeCatalogSignature(decodeURIComponent(left.src || ''));
+          const rightName = normalizeCatalogSignature(decodeURIComponent(right.src || ''));
+          const getOrder = name => {
+            if (isBananeNoirAbsolu && name.includes('banane marbre table basses diff')) return 0;
+            if (isBananeNoirAbsolu && name.includes('banane table basse s noir absolu')) return 1;
+            if (isBananeBlancIbiza && name.includes('banane blanc ibiza')) return 0;
+            if (isBananeBlancIbiza && name.includes('banane marbre table basses diff')) return 1;
+            if (isDuoGrisBenslimane && name.includes('duo fiche techniques 1')) return 0;
+            if (isDuoGrisBenslimane && name.includes('duo gris benslimane 1')) return 1;
+            if (isDuoGrisBenslimane && name.includes('duo fiche techniques 2')) return 2;
+            return 500;
+          };
+          return getOrder(leftName) - getOrder(rightName);
         });
       }
 
@@ -1210,6 +1255,24 @@
         return productData;
       }
 
+      const source = normalizeCatalogSignature([
+        productData.slug,
+        productData.title,
+        productData.coverAlt,
+        productData.cover,
+        ...(productData.photos || []).flatMap(photo => [photo.src, photo.alt])
+      ].join(' '));
+      if (
+        source.includes('banane noir absolu bois') ||
+        source.includes('banane blanc ibiza bois') ||
+        source.includes('banane table basse') ||
+        source.includes('banane marbre table basses diff') ||
+        source.includes('duo gris benslimane') ||
+        source.includes('duo fiche techniques')
+      ) {
+        return setCatalogProductCategory(productData, 'tables-basses');
+      }
+
       const officialTableBasseName = findOfficialCatalogTableBasseName(productData);
       if (officialTableBasseName) {
         return setCatalogProductCategory({...productData, title: officialTableBasseName}, 'tables-basses');
@@ -1235,6 +1298,7 @@
       if (source.includes('guatemala') || productData.color === 'vert') return 'vert-guatemala';
       if (source.includes('saint laurent')) return 'noir-saint-laurent';
       if (source.includes('imperial') || productData.color === 'marron') return 'marron-imperial';
+      if (source.includes('benslimane')) return 'gris-benslimane';
       if (source.includes('tiflet') || productData.color === 'gris') return 'gris-tiflet';
       if (source.includes('travertin') || productData.color === 'travertin') return 'travertin';
 
