@@ -3,25 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Empire Stone &mdash; Bringing Quality of Life</title>
+  <title>Empire Stone Casablanca | Tables sur mesure en marbre, travertin et c&eacute;ramique</title>
   <meta
     name="description"
-    content="table a manger, tables basses et tables d'appoint en marbre, travertin, granit et ceramique. Empire Stone Casablanca cree du mobilier design pour embellir votre interieur."
+    content="Empire Stone Casablanca con&ccedil;oit des tables &agrave; manger, tables basses, tables d'appoint et mobilier sur mesure en marbre, travertin, granit et c&eacute;ramique."
   />
   <meta name="keywords" content="table a manger marbre, table basse marbre, table d appoint marbre, table travertin Maroc, table granit Casablanca, table ceramique Maroc, mobilier design Maroc, Empire Stone, showroom marbre Casablanca" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Empire Stone" />
-  <link rel="canonical" href="https://abdelfettahundertaker-cpu.github.io/rempirestone/" />  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://abdelfettahundertaker-cpu.github.io/rempirestone/" />
+  <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_MA" />
   <meta property="og:site_name" content="Empire Stone" />
-  <meta property="og:title" content="Empire Stone Casablanca | Tables en marbre, travertin, granit et ceramique" />
-  <meta property="og:description" content="table a manger, tables basses, tables d'appoint et mobilier design en marbre, travertin, granit et ceramique au Maroc." />
+  <meta property="og:title" content="Empire Stone Casablanca | Tables sur mesure en marbre, travertin et c&eacute;ramique" />
+  <meta property="og:description" content="Tables &agrave; manger, tables basses, tables d'appoint et mobilier design fabriqu&eacute;s sur mesure au Maroc." />
   <meta property="og:url" content="https://abdelfettahundertaker-cpu.github.io/rempirestone/" />
-  <meta property="og:image" content="https://abdelfettahundertaker-cpu.github.io/rempirestone/logo.jpeg" />
+  <meta property="og:image" content="https://abdelfettahundertaker-cpu.github.io/rempirestone/video%20index/1%20index%203d.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Table Empire Stone en pierre naturelle et bois" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Empire Stone Casablanca | Tables en marbre, travertin et ceramique" />
-  <meta name="twitter:description" content="Tables a manger, tables basses et tables d'appoint en marbre, travertin, granit et ceramique." />
-  <meta name="twitter:image" content="https://abdelfettahundertaker-cpu.github.io/rempirestone/logo.jpeg" />
+  <meta name="twitter:title" content="Empire Stone Casablanca | Tables sur mesure en marbre, travertin et c&eacute;ramique" />
+  <meta name="twitter:description" content="Mobilier sur mesure en pierre naturelle pour salle &agrave; manger, salon et projets haut de gamme." />
+  <meta name="twitter:image" content="https://abdelfettahundertaker-cpu.github.io/rempirestone/video%20index/1%20index%203d.jpg" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1465,14 +1469,15 @@
     }
 
     .category-card {
-      display: block;
-      padding: 32px;
+      display: flex;
+      flex-direction: column;
       border-radius: var(--radius-lg);
       border: 1px solid rgba(18, 82, 146, 0.08);
       background: rgba(255, 255, 255, 0.92);
       box-shadow: var(--shadow-soft);
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
       color: var(--ink-950);
+      overflow: hidden;
     }
 
     .category-card:hover {
@@ -1481,16 +1486,78 @@
       box-shadow: 0 22px 50px rgba(16, 78, 137, 0.14);
     }
 
+    .category-card-media {
+      position: relative;
+      aspect-ratio: 1.1 / 1;
+      overflow: hidden;
+      background: rgba(214, 232, 250, 0.48);
+    }
+
+    .category-card-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8, 29, 52, 0.04) 0%, rgba(8, 29, 52, 0.18) 100%);
+      pointer-events: none;
+    }
+
+    .category-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 220ms ease;
+    }
+
+    .category-card:hover .category-card-media img {
+      transform: scale(1.04);
+    }
+
+    .category-card-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(18, 82, 146, 0.08);
+      color: var(--navy-700);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .category-card-body {
+      padding: 24px 24px 26px;
+    }
+
     .category-card strong {
       display: block;
-      font-size: 1.5rem;
-      margin-bottom: 12px;
+      font-size: 1.44rem;
+      margin-bottom: 10px;
       line-height: 1.1;
     }
 
     .category-card p {
       color: var(--ink-700);
       line-height: 1.6;
+      margin: 0;
+    }
+
+    .category-card-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 18px;
+      color: var(--navy-700);
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
     }
 
     @media (max-width: 940px) {
@@ -2889,7 +2956,7 @@
             <span class="section-tag">Cat&eacute;gories</span>
             <h2>Nos familles de mobilier &agrave; d&eacute;couvrir.</h2>
             <p>
-              Retrouvez les cat&eacute;gories principales sur la page Produits, avec recherche par nom et filtres couleurs.
+              Retrouvez les cat&eacute;gories principales sur la page Produits, avec recherche par nom et filtres par couleur.
             </p>
           </div>
           <a class="section-link" href="products.html">Voir tous les produits</a>
@@ -2903,20 +2970,64 @@
 
         <div class="categories-grid" data-reveal>
           <a class="category-card" href="products.html?category=tables-basses">
-            <strong>Tables basses</strong>
-            <p>Mobilier bas et raffin&eacute; pour salon et espace de vie.</p>
+            <div class="category-card-media">
+              <span class="category-card-badge">Filtrer</span>
+              <img
+                src="images/tables%20basses/casa-naturel-table-basse-marbre-kasba-design-marrakech1.jpg"
+                alt="Tables basses en pierre"
+                loading="lazy"
+              />
+            </div>
+            <div class="category-card-body">
+              <strong>Tables basses</strong>
+              <p>Mobilier bas et raffin&eacute; pour salon et espace de vie.</p>
+              <span class="category-card-link">Voir la cat&eacute;gorie</span>
+            </div>
           </a>
           <a class="category-card" href="products.html?category=tables-repas">
-            <strong>Tables &agrave; manger</strong>
-            <p>Tables elegantes et robustes pour des repas d'exception.</p>
+            <div class="category-card-media">
+              <span class="category-card-badge">Filtrer</span>
+              <img
+                src="images/table%20repas/table-de-repas-senza-travertin-bois-marrakech-kasbah-design1.jpg"
+                alt="Table &agrave; manger en travertin et bois"
+                loading="lazy"
+              />
+            </div>
+            <div class="category-card-body">
+              <strong>Tables &agrave; manger</strong>
+              <p>Tables &eacute;l&eacute;gantes et robustes pour des repas d'exception.</p>
+              <span class="category-card-link">Voir la cat&eacute;gorie</span>
+            </div>
           </a>
           <a class="category-card" href="products.html?category=tables-appoint">
-            <strong>Tables d'appoint</strong>
-            <p>Petites tables pratiques et stylisees pour completer votre decor.</p>
+            <div class="category-card-media">
+              <span class="category-card-badge">Filtrer</span>
+              <img
+                src="images/table%20repas/table-dappoint-travertin-flora-beige-kasbah-design1.jpg"
+                alt="Table d'appoint en travertin"
+                loading="lazy"
+              />
+            </div>
+            <div class="category-card-body">
+              <strong>Tables d'appoint</strong>
+              <p>Petites tables pratiques et stylis&eacute;es pour compl&eacute;ter votre d&eacute;cor.</p>
+              <span class="category-card-link">Voir la cat&eacute;gorie</span>
+            </div>
           </a>
           <a class="category-card" href="products.html?category=chaises">
-            <strong>Chaises</strong>
-            <p>Assises confortables et design pour salle &agrave; manger et salon.</p>
+            <div class="category-card-media">
+              <span class="category-card-badge">Filtrer</span>
+              <img
+                src="chaises/celia.png"
+                alt="Chaise design"
+                loading="lazy"
+              />
+            </div>
+            <div class="category-card-body">
+              <strong>Chaises</strong>
+              <p>Assises confortables et design pour salle &agrave; manger et salon.</p>
+              <span class="category-card-link">Voir la cat&eacute;gorie</span>
+            </div>
           </a>
         </div>
       </div>

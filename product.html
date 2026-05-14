@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Produit | Empire Stone</title>
   <meta name="description" content="Fiche produit Empire Stone avec galerie, description, mesures sur commande et finitions disponibles." />
+  <link rel="canonical" href="https://abdelfettahundertaker-cpu.github.io/rempirestone/product.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_MA" />
+  <meta property="og:site_name" content="Empire Stone" />
+  <meta property="og:title" content="Produit Empire Stone | Table sur mesure" />
+  <meta property="og:description" content="Consultez une fiche produit Empire Stone avec galerie, finitions, mesures sur commande et envoi rapide sur WhatsApp." />
+  <meta property="og:url" content="https://abdelfettahundertaker-cpu.github.io/rempirestone/product.html" />
+  <meta property="og:image" content="https://abdelfettahundertaker-cpu.github.io/rempirestone/video%20index/1%20index%203d.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Produit Empire Stone" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Produit Empire Stone | Table sur mesure" />
+  <meta name="twitter:description" content="Galerie, finitions, dimensions sur commande et demande rapide sur WhatsApp." />
+  <meta name="twitter:image" content="https://abdelfettahundertaker-cpu.github.io/rempirestone/video%20index/1%20index%203d.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -184,12 +199,17 @@
       min-height: 520px;
     }
 
-    .main-visual img {
+    .main-visual img,
+    .main-visual video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .main-visual video {
+      background: #0b1c32;
     }
 
     .visual-count {
@@ -239,9 +259,16 @@
       box-shadow: 0 16px 30px rgba(16, 91, 164, 0.14);
     }
 
-    .thumb-button img {
+    .thumb-button img,
+    .thumb-button video {
+      display: block;
+      width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
+    }
+
+    .thumb-button video {
+      background: #0b1c32;
     }
 
     .thumb-caption {
@@ -929,14 +956,53 @@
 
   <script>
     const fallbackImage = 'logo.jpeg';
-    const catalogStorageKey = 'empireStoneCatalogV4';
+    const catalogStorageKey = 'empireStoneCatalogV33';
+    const selectedProductStorageKey = 'empireStoneSelectedProductV1';
     const supplementalMediaFolder = 'marbre/nouveau photos pour meme produit';
-    const latestModificationsFolder = 'dernieres modificaions';
+    const soloTableBasseFolder = 'solo table basse';
+    const zarokFolder = 'Colones travertin zarok';
+    const bayaFolder = 'colonnes baya';
+    const zinayaFolder = 'colonne zinaya';
+    const cubeTikaFolder = 'cube tika marbre';
+    const duoCasaFolder = 'duo casa';
+    const duoElsaFolder = 'duo table basse elsa';
+    const bananeTableBasseFolder = 'banane table basse';
+    const celyaSoloTableBasseFolder = 'celya table basse solo';
+    const trioCelyaBoisFolder = 'trio celya bois';
+    const trioCasaNaturelFolder = 'trio casa naturel';
+    const esmeeTableBasseFolder = 'esmee table basse rectangulaire';
+    const honoreTableBasseFolder = 'honore table basse';
+    const horusTableBasseFolder = 'horus table basse';
+    const horusCarreTableBasseFolder = 'horuss carre table basser';
+    const yaraTableBasseFolder = 'yara table basse';
+    const zanaTableBasseFolder = 'zana table basse';
+    const leonieTableMangerFolder = 'table manger leonie';
+    const senzaTableMangerFolder = 'table manger senza';
+    const soleaTableMangerFolder = 'solea table manger';
+    const saroTableMangerFolder = 'saro table manger';
+    const kanaTableMangerFolder = 'kana tabl manger';
+    const niyaTableMangerFolder = 'images/table repas';
+    const novaTableMangerFolder = 'nova table manger';
+    const nomadTableMangerFolder = 'nomad table manger';
+    const tableMangerElsaFolder = 'table manger elsa';
+    const kamiliaTableMangerFolder = 'kamilia table manger';
+    const arabiscatoTableMangerFolder = 'arabiscato table manger';
+    const mariaTableMangerFolder = 'maria table manger';
     const blancIbizaDiningFolder = 'table manger blanc ibiza 4 personnes';
+    const table3dCelioFolder = 'table 3d celio';
+    const latestModificationsFolder = 'dernieres modificaions';
     const trioCremaRoyaleFolder = 'triocremaroyaletablebasse';
     const technicalSheetsFolder = 'nouvelle photo fiche techniques';
+    const videoIndexFolder = 'video index';
+    const belvarioHardstonesFolder = 'belvario hardstones';
+    const castellanoHardstonesFolder = 'castellano hardstones';
+    const lysandraHardstonesFolder = 'lysandra';
+    const lunavikHardstonesFolder = 'lunavik hardstones';
+    const novaroHardstonesFolder = 'novaro hardstones';
+    const sorvelloHardstonesFolder = 'sorvello hardstones';
+    const valdoriaHardstonesFolder = 'valdoria hardstones';
     const hardstoneTechnicalSheet = `${technicalSheetsFolder}/fiche technique tables hardstones.png`;
-    const blancIbizaTechnicalSheet = `${blancIbizaDiningFolder}/blac ibiza table manger 4 personnes fiches techniques.jpeg`;
+    const celiaHardstoneVideo = `${videoIndexFolder}/Table a manger hardstone celia video.mp4`;
     const shopifyBuyConfig = {
       domain: 'arhh00-dp.myshopify.com',
       storefrontAccessToken: 'd2e68b6e6f17e94bcabde7491b30cc62',
@@ -989,43 +1055,203 @@
       ...ceramicFinishLibrary.map(({id, label, family, image}) => ({id, label, family, image}))
     ];
 
+    const casaSoloFinishPhotos = {
+      'casa-naturel': 'casa naturel1.png',
+      'blanc-ibiza': 'blanc ibiza solo table basse.png',
+      'crema-royale': 'crema coryale solo table basse.png',
+      'noir-absolu': 'noir absolu solo table basse.png',
+      'vert-guatemala': 'vert guatemala solo table basse.png',
+      'travertin': 'travertin solo table basse .png',
+      'blanc-carrara': 'blan cararra solo table basse.png'
+    };
+
+    const casaSoloFinishes = [
+      {id: 'casa-naturel', label: 'Casa naturel', family: 'beige', image: encodeURI(`${soloTableBasseFolder}/${casaSoloFinishPhotos['casa-naturel']}`)},
+      {id: 'blanc-ibiza', label: 'Blanc Ibiza', family: 'blanc', image: encodeURI(`${soloTableBasseFolder}/${casaSoloFinishPhotos['blanc-ibiza']}`)},
+      {id: 'crema-royale', label: 'Crema Royale', family: 'beige', image: encodeURI(`${soloTableBasseFolder}/${casaSoloFinishPhotos['crema-royale']}`)},
+      {id: 'noir-absolu', label: 'Noir Absolu', family: 'noir', image: encodeURI(`${soloTableBasseFolder}/${casaSoloFinishPhotos['noir-absolu']}`)},
+      {id: 'vert-guatemala', label: 'Vert Guatemala', family: 'vert', image: encodeURI(`${soloTableBasseFolder}/${casaSoloFinishPhotos['vert-guatemala']}`)},
+      {id: 'travertin', label: 'Travertin', family: 'travertin', image: encodeURI(`${soloTableBasseFolder}/${casaSoloFinishPhotos['travertin']}`)},
+      {id: 'blanc-carrara', label: 'Blanc Carrara', family: 'blanc', image: encodeURI(`${soloTableBasseFolder}/${casaSoloFinishPhotos['blanc-carrara']}`)}
+    ];
+
+    const zarokFinishPhotos = {
+      'blanc-carrara': 'zarok blanc carrara.png',
+      'blanc-ibiza': 'zarok blanc ibiza.png',
+      'crema-marfil': 'zarok crema marfil.png',
+      'crema-royale': 'zarok crema royale.png',
+      'noir-absolu': 'zarok noir absolu .png',
+      'vert-guatemala': 'zarok vert guatemala.png',
+      'travertin': 'colones-travertin-zarok-kasbah-design-marrakech1.jpg'
+    };
+
+    const zarokFinishes = [
+      {id: 'blanc-carrara', label: 'Blanc Carrara', family: 'blanc', image: encodeURI(`${zarokFolder}/${zarokFinishPhotos['blanc-carrara']}`)},
+      {id: 'blanc-ibiza', label: 'Blanc Ibiza', family: 'blanc', image: encodeURI(`${zarokFolder}/${zarokFinishPhotos['blanc-ibiza']}`)},
+      {id: 'crema-marfil', label: 'Crema Marfil', family: 'beige', image: encodeURI(`${zarokFolder}/${zarokFinishPhotos['crema-marfil']}`)},
+      {id: 'crema-royale', label: 'Crema Royale', family: 'beige', image: encodeURI(`${zarokFolder}/${zarokFinishPhotos['crema-royale']}`)},
+      {id: 'noir-absolu', label: 'Noir Absolu', family: 'noir', image: encodeURI(`${zarokFolder}/${zarokFinishPhotos['noir-absolu']}`)},
+      {id: 'vert-guatemala', label: 'Vert Guatemala', family: 'vert', image: encodeURI(`${zarokFolder}/${zarokFinishPhotos['vert-guatemala']}`)},
+      {id: 'travertin', label: 'Travertin', family: 'travertin', image: encodeURI(`${zarokFolder}/${zarokFinishPhotos['travertin']}`)}
+    ];
+    const zarokColorPhotos = Object.values(zarokFinishPhotos).map(file => ({
+      src: encodeURI(`${zarokFolder}/${file}`),
+      alt: file.replace(/\.[^.]+$/, '')
+    }));
+
+    const bayaFinishPhotos = {
+      'blanc-carrara': 'baya blanc carrara.png',
+      'blanc-ibiza': 'baya blanc ibiza.png',
+      'crema-marfil': 'baya crema marfil.png',
+      'crema-royale': 'baya crema royLE.png',
+      'travertin': 'baya travertin.png',
+      'vert-guatemala': 'baya vert guatemala.png'
+    };
+
+    const bayaFinishes = [
+      {id: 'blanc-carrara', label: 'Blanc Carrara', family: 'blanc', image: encodeURI(`${bayaFolder}/${bayaFinishPhotos['blanc-carrara']}`)},
+      {id: 'blanc-ibiza', label: 'Blanc Ibiza', family: 'blanc', image: encodeURI(`${bayaFolder}/${bayaFinishPhotos['blanc-ibiza']}`)},
+      {id: 'crema-marfil', label: 'Crema Marfil', family: 'beige', image: encodeURI(`${bayaFolder}/${bayaFinishPhotos['crema-marfil']}`)},
+      {id: 'crema-royale', label: 'Crema Royale', family: 'beige', image: encodeURI(`${bayaFolder}/${bayaFinishPhotos['crema-royale']}`)},
+      {id: 'travertin', label: 'Travertin', family: 'travertin', image: encodeURI(`${bayaFolder}/${bayaFinishPhotos['travertin']}`)},
+      {id: 'vert-guatemala', label: 'Vert Guatemala', family: 'vert', image: encodeURI(`${bayaFolder}/${bayaFinishPhotos['vert-guatemala']}`)}
+    ];
+    const bayaColorPhotos = Object.values(bayaFinishPhotos).map(file => ({
+      src: encodeURI(`${bayaFolder}/${file}`),
+      alt: file.replace(/\.[^.]+$/, '')
+    }));
+
+    const zinayaFinishPhotos = {
+      'blanc-carrara': 'blanc carrara zinaya.png',
+      'blanc-ibiza': 'blanc ibiza zinaya.png',
+      'crema-marfil': 'crema marfil zinaya.png',
+      'crema-royale': 'crema royale zinaya.png',
+      'noir-absolu': 'noir absolu zinaya.png',
+      'vert-guatemala': 'vert guatemala zinaya.png',
+      'travertin': 'colonne-travertin-zinaya-kasbah-design-marrakech1 (1).jpg'
+    };
+
+    const zinayaFinishes = [
+      {id: 'blanc-carrara', label: 'Blanc Carrara', family: 'blanc', image: encodeURI(`${zinayaFolder}/${zinayaFinishPhotos['blanc-carrara']}`)},
+      {id: 'blanc-ibiza', label: 'Blanc Ibiza', family: 'blanc', image: encodeURI(`${zinayaFolder}/${zinayaFinishPhotos['blanc-ibiza']}`)},
+      {id: 'crema-marfil', label: 'Crema Marfil', family: 'beige', image: encodeURI(`${zinayaFolder}/${zinayaFinishPhotos['crema-marfil']}`)},
+      {id: 'crema-royale', label: 'Crema Royale', family: 'beige', image: encodeURI(`${zinayaFolder}/${zinayaFinishPhotos['crema-royale']}`)},
+      {id: 'noir-absolu', label: 'Noir Absolu', family: 'noir', image: encodeURI(`${zinayaFolder}/${zinayaFinishPhotos['noir-absolu']}`)},
+      {id: 'vert-guatemala', label: 'Vert Guatemala', family: 'vert', image: encodeURI(`${zinayaFolder}/${zinayaFinishPhotos['vert-guatemala']}`)},
+      {id: 'travertin', label: 'Travertin', family: 'travertin', image: encodeURI(`${zinayaFolder}/${zinayaFinishPhotos['travertin']}`)}
+    ];
+    const zinayaColorPhotos = Object.values(zinayaFinishPhotos).map(file => ({
+      src: encodeURI(`${zinayaFolder}/${file}`),
+      alt: file.replace(/\.[^.]+$/, '')
+    }));
+
+    const cubeTikaFinishPhotos = {
+      'blanc-carrara': 'cube tika blanc carrara.png',
+      'blanc-ibiza': 'cube tika marbre  blanc ibiza.png',
+      'crema-marfil': 'cube tika marbre  crema marfil.png',
+      'crema-royale': 'cube tika marbre crema royale.png',
+      'noir-absolu': 'Cube tika marbre noir absolu.png',
+      'travertin': 'cube tika marbre travertin.png',
+      'vert-guatemala': 'cube tika marbre vert guatemala.png'
+    };
+
+    const cubeTikaFinishes = [
+      {id: 'blanc-carrara', label: 'Blanc Carrara', family: 'blanc', image: encodeURI(`${cubeTikaFolder}/${cubeTikaFinishPhotos['blanc-carrara']}`)},
+      {id: 'blanc-ibiza', label: 'Blanc Ibiza', family: 'blanc', image: encodeURI(`${cubeTikaFolder}/${cubeTikaFinishPhotos['blanc-ibiza']}`)},
+      {id: 'crema-marfil', label: 'Crema Marfil', family: 'beige', image: encodeURI(`${cubeTikaFolder}/${cubeTikaFinishPhotos['crema-marfil']}`)},
+      {id: 'crema-royale', label: 'Crema Royale', family: 'beige', image: encodeURI(`${cubeTikaFolder}/${cubeTikaFinishPhotos['crema-royale']}`)},
+      {id: 'noir-absolu', label: 'Noir Absolu', family: 'noir', image: encodeURI(`${cubeTikaFolder}/${cubeTikaFinishPhotos['noir-absolu']}`)},
+      {id: 'travertin', label: 'Travertin', family: 'travertin', image: encodeURI(`${cubeTikaFolder}/${cubeTikaFinishPhotos['travertin']}`)},
+      {id: 'vert-guatemala', label: 'Vert Guatemala', family: 'vert', image: encodeURI(`${cubeTikaFolder}/${cubeTikaFinishPhotos['vert-guatemala']}`)}
+    ];
+    const cubeTikaColorPhotos = Object.values(cubeTikaFinishPhotos).map(file => ({
+      src: encodeURI(`${cubeTikaFolder}/${file}`),
+      alt: file.replace(/\.[^.]+$/, '')
+    }));
+
+    const duoElsaFinishPhotos = {
+      'blanc-carrara': 'duo elsa blanc carrara.png',
+      'blanc-ibiza': 'duo elsa blanc ibiza.png',
+      'crema-marfil': 'duo elsa crema marfil.png',
+      'crema-royale': 'duo elsa crema royale.png',
+      'noir-absolu': 'duo elsa noir absolu.png',
+      'travertin': 'duo travertin.jpeg',
+      'vert-guatemala': 'duo elsa vert guatemala.png'
+    };
+
+    const duoElsaFinishes = [
+      {id: 'blanc-carrara', label: 'Blanc Carrara', family: 'blanc', image: encodeURI(`${duoElsaFolder}/${duoElsaFinishPhotos['blanc-carrara']}`)},
+      {id: 'blanc-ibiza', label: 'Blanc Ibiza', family: 'blanc', image: encodeURI(`${duoElsaFolder}/${duoElsaFinishPhotos['blanc-ibiza']}`)},
+      {id: 'crema-marfil', label: 'Crema Marfil', family: 'beige', image: encodeURI(`${duoElsaFolder}/${duoElsaFinishPhotos['crema-marfil']}`)},
+      {id: 'crema-royale', label: 'Crema Royale', family: 'beige', image: encodeURI(`${duoElsaFolder}/${duoElsaFinishPhotos['crema-royale']}`)},
+      {id: 'noir-absolu', label: 'Noir Absolu', family: 'noir', image: encodeURI(`${duoElsaFolder}/${duoElsaFinishPhotos['noir-absolu']}`)},
+      {id: 'travertin', label: 'Travertin', family: 'travertin', image: encodeURI(`${duoElsaFolder}/${duoElsaFinishPhotos['travertin']}`)},
+      {id: 'vert-guatemala', label: 'Vert Guatemala', family: 'vert', image: encodeURI(`${duoElsaFolder}/${duoElsaFinishPhotos['vert-guatemala']}`)}
+    ];
+    const duoElsaColorPhotos = Object.values(duoElsaFinishPhotos).map(file => ({
+      src: encodeURI(`${duoElsaFolder}/${file}`),
+      alt: file.replace(/\.[^.]+$/, '')
+    }));
+
+    const bananeEmpireFinishPhotos = {
+      'travertin': 'banane   travertin.png',
+      'blanc-ibiza': 'banane blanc ibiza (1).jpeg',
+      'crema-marfil': 'banane crema marfil.png',
+      'crema-royale': 'banane crema royale.png',
+      'noir-absolu': 'banane noir absolu.png',
+      'vert-guatemala': 'banane vert guatemala.png'
+    };
+
+    const bananeEmpireFinishes = [
+      {id: 'travertin', label: 'Travertin', family: 'travertin', image: encodeURI(`${bananeTableBasseFolder}/${bananeEmpireFinishPhotos['travertin']}`)},
+      {id: 'blanc-ibiza', label: 'Blanc Ibiza', family: 'blanc', image: encodeURI(`${bananeTableBasseFolder}/${bananeEmpireFinishPhotos['blanc-ibiza']}`)},
+      {id: 'crema-marfil', label: 'Crema Marfil', family: 'beige', image: encodeURI(`${bananeTableBasseFolder}/${bananeEmpireFinishPhotos['crema-marfil']}`)},
+      {id: 'crema-royale', label: 'Crema Royale', family: 'beige', image: encodeURI(`${bananeTableBasseFolder}/${bananeEmpireFinishPhotos['crema-royale']}`)},
+      {id: 'noir-absolu', label: 'Noir Absolu', family: 'noir', image: encodeURI(`${bananeTableBasseFolder}/${bananeEmpireFinishPhotos['noir-absolu']}`)},
+      {id: 'vert-guatemala', label: 'Vert Guatemala', family: 'vert', image: encodeURI(`${bananeTableBasseFolder}/${bananeEmpireFinishPhotos['vert-guatemala']}`)}
+    ];
+    const bananeEmpireColorPhotos = Object.values(bananeEmpireFinishPhotos).map(file => ({
+      src: encodeURI(`${bananeTableBasseFolder}/${file}`),
+      alt: file.replace(/\.[^.]+$/, '')
+    }));
+
+    const celioDiningPhotos = [
+      {folder: blancIbizaDiningFolder, file: 'table anger blanc ibiza 100 3d bois 4 personne.jpeg'},
+      {folder: table3dCelioFolder, file: 'celio blanc ibiza.png'},
+      {folder: table3dCelioFolder, file: 'celio crema marfil.png'},
+      {folder: table3dCelioFolder, file: 'celio crema royale.png'},
+      {folder: table3dCelioFolder, file: 'celio noir absolue.png'},
+      {folder: table3dCelioFolder, file: 'table manger3d bois noir  absolu.jpeg'},
+      {folder: table3dCelioFolder, file: 'celio vert guatemala.png'}
+    ].map(({folder, file}) => ({
+      src: encodeURI(`${folder}/${file}`),
+      alt: file.replace(/\.[^.]+$/, '')
+    }));
+
     const officialTableBasseNames = [
+      'Banane Empire Stone',
       'Casa naturel table basse marbre',
       'Cube tika marbre',
-      'Duo crema royale',
       'Duo casa naturel tables basses marbre',
-      'Duo travertin table basse',
-      'Duo blanc Ibiza',
-      'Duo crema marfil tables basses',
+      'Duo casa naturel marbre table basses',
+      'Duo elsa',
       'Table basse astra',
       'Table basse celya bois',
       'Table basse esmee',
       'Table basse honore travertin bois',
       'Table basse horus travertin',
       'Table basse moka cire bois',
-      'Table basse sahel',
       'Table basse sahel chene',
-      'Table basse sahel marbre noir',
       'Table basse travertin tessa',
       'Table basse travertin horus carre',
-      'Table basse wallen travertin bois',
       'Table basse yara',
       'Table basse zana travertin',
-      'Tables basses duo celya bois',
-      'Tables basses duo dana',
       'Tables basses duo moka cire bois',
-      'Tables basses duo wallen',
       'Tables basses suma beige',
-      'Tables basses travertin etoile mobilier',
-      'Tables basses travertin luna',
       'Tables basses travertin tessa noir royal',
       'Tables basses trio celya bois',
-      'Trio crema royale',
       'Trio moka',
-      'Crema Marfil table basse',
       'Trio casa naturel tables basses marbre',
-      'Trio gris thundra',
-      'Trio tables basses en travertin nouma',
       'Trio crema marfil tables basses'
     ];
 
@@ -1092,9 +1318,50 @@
     function isSupplementalCatalogPhoto(src) {
       const decoded = decodeURIComponent(src || '').toLowerCase().replace(/\\/g, '/');
       return decoded.includes(`${supplementalMediaFolder.toLowerCase()}/`) ||
+        decoded.includes(`${soloTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${zarokFolder.toLowerCase()}/`) ||
+        decoded.includes(`${bayaFolder.toLowerCase()}/`) ||
+        decoded.includes(`${zinayaFolder.toLowerCase()}/`) ||
+        decoded.includes(`${cubeTikaFolder.toLowerCase()}/`) ||
+        decoded.includes(`${duoCasaFolder.toLowerCase()}/`) ||
+        decoded.includes(`${duoElsaFolder.toLowerCase()}/`) ||
+        decoded.includes(`${bananeTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${celyaSoloTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${trioCelyaBoisFolder.toLowerCase()}/`) ||
+        decoded.includes(`${trioCasaNaturelFolder.toLowerCase()}/`) ||
+        decoded.includes(`${esmeeTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${honoreTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${horusTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${horusCarreTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${yaraTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${zanaTableBasseFolder.toLowerCase()}/`) ||
+        decoded.includes(`${leonieTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes(`${senzaTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes('/images/table repas/table-de-repas-senza-travertin-bois') ||
+        decoded.includes('/images/table repas/table-repas-senza-travertin-bois') ||
+        decoded.includes('/images/table repas/table-travertin-et-bois-senza') ||
+        decoded.includes(`${soleaTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes(`${saroTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes(`${kanaTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes('/images/table repas/table-niya-beton-cire-bois') ||
+        decoded.includes(`${novaTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes('/images/table repas/table-nomad-travertin') ||
+        decoded.includes(`${nomadTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes(`${tableMangerElsaFolder.toLowerCase()}/`) ||
+        decoded.includes(`${kamiliaTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes(`${arabiscatoTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes(`${mariaTableMangerFolder.toLowerCase()}/`) ||
+        decoded.includes(`${table3dCelioFolder.toLowerCase()}/`) ||
         decoded.includes(`${latestModificationsFolder.toLowerCase()}/`) ||
-        decoded.includes(`${blancIbizaDiningFolder.toLowerCase()}/`) ||
         decoded.includes(`${trioCremaRoyaleFolder.toLowerCase()}/`) ||
+        decoded.includes(`${videoIndexFolder.toLowerCase()}/`) ||
+        decoded.includes(`${belvarioHardstonesFolder.toLowerCase()}/`) ||
+        decoded.includes(`${castellanoHardstonesFolder.toLowerCase()}/`) ||
+        decoded.includes(`${lysandraHardstonesFolder.toLowerCase()}/`) ||
+        decoded.includes(`${lunavikHardstonesFolder.toLowerCase()}/`) ||
+        decoded.includes(`${novaroHardstonesFolder.toLowerCase()}/`) ||
+        decoded.includes(`${sorvelloHardstonesFolder.toLowerCase()}/`) ||
+        decoded.includes(`${valdoriaHardstonesFolder.toLowerCase()}/`) ||
         decoded.includes(`${technicalSheetsFolder.toLowerCase()}/`);
     }
 
@@ -1130,32 +1397,81 @@
         return true;
       });
 
+      const isZarokColumnProduct = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('colones travertin zarok');
+
+      if (isZarokColumnProduct) {
+        return zarokColorPhotos;
+      }
+
+      const isBayaColumnProduct = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('colonne de marbre baya');
+
+      if (isBayaColumnProduct) {
+        return bayaColorPhotos;
+      }
+
+      const isZinayaColumnProduct = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('colonne travertin zinaya');
+
+      if (isZinayaColumnProduct) {
+        return zinayaColorPhotos;
+      }
+
+      const isCubeTikaProduct = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('cube tika marbre');
+
+      if (isCubeTikaProduct) {
+        return cubeTikaColorPhotos;
+      }
+
+      const isDuoElsaProduct = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('duo elsa');
+
+      if (isDuoElsaProduct) {
+        return duoElsaColorPhotos;
+      }
+
+      const isBananeEmpireProduct = category === 'tables-basses'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('banane empire stone');
+
+      if (isBananeEmpireProduct) {
+        return bananeEmpireColorPhotos;
+      }
+
+      const isCelioDiningProduct = category === 'tables-repas'
+        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''} ${(productData.photos || []).map(photo => photo.src).join(' ')}`).includes('celio');
+
+      if (isCelioDiningProduct) {
+        return celioDiningPhotos;
+      }
+
       const isCeliaHardstone = category === 'hardstone-ceramiques'
         && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('celia');
 
       if (isCeliaHardstone) {
+        const filteredPhotos = photos.filter(photo => !normalizeCatalogSignature(decodeURIComponent(photo.src || '')).includes('fiche technique tables hardstones'));
+        photos.length = 0;
+        photos.push(...filteredPhotos);
+
+        if (!photos.some(photo => decodeURIComponent(photo.src || '').toLowerCase().endsWith('/table a manger hardstone celia video.mp4'))) {
+          photos.push({
+            src: celiaHardstoneVideo,
+            alt: 'Table a manger hardstone celia video'
+          });
+        }
+
         photos.sort((left, right) => {
           const leftName = normalizeCatalogSignature(decodeURIComponent(left.src || ''));
           const rightName = normalizeCatalogSignature(decodeURIComponent(right.src || ''));
-          const leftOrder = leftName.includes('table manger hardstone celia') ? 0 : leftName.includes('fiche technique tables hardstones') ? 900 : 500;
-          const rightOrder = rightName.includes('table manger hardstone celia') ? 0 : rightName.includes('fiche technique tables hardstones') ? 900 : 500;
+          const leftOrder = leftName.includes('table manger hardstone celia') ? 0 : leftName.includes('table a manger hardstone celia video') ? 1 : leftName.includes('fiche technique tables hardstones') ? 900 : 500;
+          const rightOrder = rightName.includes('table manger hardstone celia') ? 0 : rightName.includes('table a manger hardstone celia video') ? 1 : rightName.includes('fiche technique tables hardstones') ? 900 : 500;
           return leftOrder - rightOrder;
         });
       }
 
-      const isBananeNoirAbsolu = category === 'tables-basses'
-        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('banane noir absolu bois');
-      const isBananeBlancIbiza = category === 'tables-basses'
-        && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('banane blanc ibiza bois');
       const isDuoGrisBenslimane = category === 'tables-basses'
         && normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('duo gris benslimane');
-      const bananeDiffSrc = `${technicalSheetsFolder}/banane marbre table basses diff.jpeg`;
-      if ((isBananeNoirAbsolu || isBananeBlancIbiza) && !photos.some(photo => decodeURIComponent(photo.src || '').toLowerCase().endsWith('/banane marbre table basses diff.jpeg'))) {
-        photos.push({
-          src: bananeDiffSrc,
-          alt: 'Banane marbre table basses diff'
-        });
-      }
       if (isDuoGrisBenslimane) {
         [
           'duo fiche techniques 1.jpeg',
@@ -1169,15 +1485,11 @@
           }
         });
       }
-      if (isBananeNoirAbsolu || isBananeBlancIbiza || isDuoGrisBenslimane) {
+      if (isDuoGrisBenslimane) {
         photos.sort((left, right) => {
           const leftName = normalizeCatalogSignature(decodeURIComponent(left.src || ''));
           const rightName = normalizeCatalogSignature(decodeURIComponent(right.src || ''));
           const getOrder = name => {
-            if (isBananeNoirAbsolu && name.includes('banane marbre table basses diff')) return 0;
-            if (isBananeNoirAbsolu && name.includes('banane table basse s noir absolu')) return 1;
-            if (isBananeBlancIbiza && name.includes('banane blanc ibiza')) return 0;
-            if (isBananeBlancIbiza && name.includes('banane marbre table basses diff')) return 1;
             if (isDuoGrisBenslimane && name.includes('duo fiche techniques 1')) return 0;
             if (isDuoGrisBenslimane && name.includes('duo gris benslimane 1')) return 1;
             if (isDuoGrisBenslimane && name.includes('duo fiche techniques 2')) return 2;
@@ -1262,11 +1574,13 @@
         productData.cover,
         ...(productData.photos || []).flatMap(photo => [photo.src, photo.alt])
       ].join(' '));
+
+      if (source.includes('maria table a manger') || source.includes('maria table manger')) {
+        return setCatalogProductCategory({...productData, title: 'Maria table a manger'}, 'tables-repas');
+      }
+
       if (
-        source.includes('banane noir absolu bois') ||
-        source.includes('banane blanc ibiza bois') ||
         source.includes('banane table basse') ||
-        source.includes('banane marbre table basses diff') ||
         source.includes('duo gris benslimane') ||
         source.includes('duo fiche techniques')
       ) {
@@ -1309,6 +1623,59 @@
       return '';
     }
 
+    const photoFinishDefinitions = [
+      {id: 'blanc-carrara', label: 'Blanc Carrara', family: 'blanc', keywords: ['blanc carrara', 'blanc carrare', 'carrara', 'carrare']},
+      {id: 'blanc-ibiza', label: 'Blanc Ibiza', family: 'blanc', keywords: ['blanc ibiza', 'ibiza']},
+      {id: 'crema-marfil', label: 'Crema Marfil', family: 'beige', keywords: ['crema marfil', 'crema marifl', 'marfil', 'marifl']},
+      {id: 'crema-royale', label: 'Crema Royale', family: 'beige', keywords: ['crema royale', 'crema royal', 'crema coryale', 'crema royle']},
+      {id: 'noir-absolu', label: 'Noir Absolu', family: 'noir', keywords: ['noir absolu', 'noir absolue']},
+      {id: 'noir-royal', label: 'Noir Royal', family: 'noir', keywords: ['noir royal']},
+      {id: 'noir-saint-laurent', label: 'Noir Saint-Laurent', family: 'noir', keywords: ['noir saint laurent', 'saint laurent']},
+      {id: 'vert-guatemala', label: 'Vert Guatemala', family: 'vert', keywords: ['vert guatemala', 'vert guatimala', 'guatemala', 'guatimala']},
+      {id: 'travertin', label: 'Travertin', family: 'travertin', keywords: ['travertin']},
+      {id: 'gris-benslimane', label: 'Gris Benslimane', family: 'gris', keywords: ['gris benslimane', 'benslimane']},
+      {id: 'gris-tiflet', label: 'Gris Tiflet', family: 'gris', keywords: ['gris tiflet', 'tiflet']},
+      {id: 'casa-naturel', label: 'Casa naturel', family: 'beige', keywords: ['casa naturel']},
+      {id: 'taza-naturel', label: 'Taza naturel', family: 'beige', keywords: ['taza naturel', 'taza beige']}
+    ];
+
+    function detectPhotoFinish(source) {
+      const normalizedSource = normalizeCatalogSignature(source);
+      return photoFinishDefinitions.find(finish =>
+        finish.keywords.some(keyword => normalizedSource.includes(normalizeCatalogSignature(keyword)))
+      ) || null;
+    }
+
+    function getPhotoFinishSource(photo) {
+      return decodeURIComponent(`${photo?.src || ''} ${photo?.alt || ''}`);
+    }
+
+    function getPhotoBasedFinishes(productData) {
+      const photos = Array.isArray(productData.photos) ? productData.photos : [];
+      const finishesById = new Map();
+
+      photos.forEach(photo => {
+        const finish = detectPhotoFinish(getPhotoFinishSource(photo));
+        if (!finish || finishesById.has(finish.id)) return;
+
+        finishesById.set(finish.id, {
+          id: finish.id,
+          label: finish.label,
+          family: finish.family,
+          image: getSafeImageSrc(photo.src)
+        });
+      });
+
+      return Array.from(finishesById.values());
+    }
+
+    function getPhotoBasedFinishPhoto(productData, finishId) {
+      return (productData.photos || []).find(photo => {
+        const finish = detectPhotoFinish(getPhotoFinishSource(photo));
+        return finish?.id === finishId;
+      }) || null;
+    }
+
     function mergeCatalogFinishes(savedFinishes) {
       const merged = new Map();
 
@@ -1345,35 +1712,23 @@
         ).replace(/\btables?\s+repas\b/gi, match =>
           match.toLowerCase().startsWith('tables') ? 'Tables a manger' : 'Table a manger'
         ).replace(/\bsidi\s+ghanem\b/gi, '').replace(/\s{2,}/g, ' ').trim();
-        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''}`).includes('table a manger blanc ibiza vues et')) {
-          organizedProduct.title = 'Table a manger blanc ibiza 4 personnes';
-        }
-        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table a manger blanc ibiza 5800 dh')) {
-          organizedProduct.title = 'Table a manger blanc ibiza 4 personnes';
-        }
-        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table manger blanc ibiza 5800 dh 2')) {
-          organizedProduct.title = 'Table a manger blanc ibiza modele rond';
-        }
         if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table manger blanc ibiza 4 personnes')) {
-          organizedProduct.title = 'Table a manger blanc ibiza 4 personnes rond';
-        }
-        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table anger blanc ibiza 100 3d bois 4 personne')) {
-          organizedProduct.title = 'Table a manger blanc ibiza rond bois 3d';
-        }
-        if (/table\s+manger\s+blanc\s+ibiza\s+rond\s+bois\s+d\b/i.test(organizedProduct.title)) {
-          organizedProduct.title = 'Table a manger blanc ibiza rond bois 3d';
-        }
-        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table repas java')) {
-          organizedProduct.title = 'Table a manger java';
-        }
-        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table de repas en traveertin')) {
-          organizedProduct.title = 'Table a manger en travertin';
+          organizedProduct.title = 'Maria table a manger';
         }
         if (
-          /^Table a manger personnes$/i.test(organizedProduct.title || '') ||
-          normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('dernieres modificaions table a manger 4 jpeg')
+          normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table de repas en traveertin') ||
+          normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('table de repas en travertin')
         ) {
-          organizedProduct.title = 'Table a manger 4 personnes';
+          organizedProduct.title = 'Table manger kamilia';
+        }
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('saro')) {
+          organizedProduct.title = 'Table de repas saro';
+          organizedProduct.category = 'tables-repas';
+          organizedProduct.label = 'Tables a manger';
+          organizedProduct.categoryLabel = 'Tables a manger';
+        }
+        if (normalizeCatalogSignature(`${organizedProduct.title} ${organizedProduct.slug || ''} ${organizedProduct.cover || ''} ${(organizedProduct.photos || []).map(photo => photo.src).join(' ')}`).includes('kana')) {
+          organizedProduct.title = 'Table de repas kana';
           organizedProduct.category = 'tables-repas';
           organizedProduct.label = 'Tables a manger';
           organizedProduct.categoryLabel = 'Tables a manger';
@@ -1391,27 +1746,20 @@
         && sourceForPrice.includes('blanc ibiza')
         && (
           sourceForPrice.includes('4 personnes rond') ||
-          sourceForPrice.includes('modele rond') ||
-          sourceForPrice.includes('table manger blanc ibiza 4 personnes')
+          sourceForPrice.includes('modele rond')
         );
-      const isFourPersonDining = category === 'tables-repas'
-        && normalizeCatalogSignature(`${organizedProduct.title || ''} ${organizedProduct.slug || ''}`).includes('table a manger 4 personnes');
       const cleanMeasurements = Array.isArray(organizedProduct.measurements)
         ? organizedProduct.measurements.map(line => {
-            if ((isBlancIbizaRoundDining || isFourPersonDining) && /^Capacite\s*:/i.test(line)) return 'Capacite : 4 personnes';
+            if (isBlancIbizaRoundDining && /^Capacite\s*:/i.test(line)) return 'Capacite : 4 personnes';
             if (category !== 'tables-repas' || !/^Largeur\s*:/i.test(line)) return line;
             return /leonie/i.test(organizedProduct.title || '') ? 'Largeur : 90 cm' : 'Largeur : au choix';
           })
         : organizedProduct.measurements;
       const forcedPricing = isBlancIbizaRoundDining
         ? {badge: '4300 dh', value: 4300}
-        : sourceForPrice.includes('table anger blanc ibiza 100 3d bois 4 personne')
-        ? {badge: '4500 dh', value: 4500}
-        : sourceForPrice.includes('bois noir absolu')
-        ? {badge: '4500 dh', value: 4500}
         : null;
-      const shopifyProductId = organizedProduct.shopifyProductId || (sourceForPrice.includes('balzac') ? '10438391333157' : '');
-      const shopifyComponentId = organizedProduct.shopifyComponentId || (sourceForPrice.includes('balzac') ? 'product-component-1778343641364' : '');
+      const shopifyProductId = organizedProduct.shopifyProductId || '';
+      const shopifyComponentId = organizedProduct.shopifyComponentId || '';
 
       return {
         ...organizedProduct,
@@ -1509,6 +1857,89 @@
       return finishes[0]?.id || '';
     }
 
+    function isCasaSoloTable(productData) {
+      const signature = normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`);
+      return signature.includes('casa naturel table basse marbre');
+    }
+
+    function isCubeTika(productData) {
+      const signature = normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`);
+      return signature.includes('cube tika marbre');
+    }
+
+    function isDuoElsa(productData) {
+      const signature = normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`);
+      return signature.includes('duo elsa');
+    }
+
+    function isBananeEmpireStone(productData) {
+      const signature = normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`);
+      return signature.includes('banane empire stone');
+    }
+
+    function hasWoodOption(productData) {
+      const signature = normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`);
+      return signature.includes('banane empire stone') || signature.includes('table basse celya bois');
+    }
+
+    function isZarokColumn(productData) {
+      const signature = normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`);
+      return signature.includes('colones travertin zarok');
+    }
+
+    function isBayaColumn(productData) {
+      const signature = normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`);
+      return signature.includes('colonne de marbre baya');
+    }
+
+    function isZinayaColumn(productData) {
+      const signature = normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`);
+      return signature.includes('colonne travertin zinaya');
+    }
+
+    function getProductFinishes(productData, finishes) {
+      if (isCasaSoloTable(productData)) return casaSoloFinishes;
+      if (isCubeTika(productData)) return cubeTikaFinishes;
+      if (isDuoElsa(productData)) return duoElsaFinishes;
+      if (isBananeEmpireStone(productData)) return bananeEmpireFinishes;
+      if (isZarokColumn(productData)) return zarokFinishes;
+      if (isBayaColumn(productData)) return bayaFinishes;
+      if (isZinayaColumn(productData)) return zinayaFinishes;
+      const photoFinishes = getPhotoBasedFinishes(productData);
+      if (photoFinishes.length > 1) return photoFinishes;
+      return finishes;
+    }
+
+    function getFinishPhoto(productData, finishId) {
+      const finishPhotos = isCasaSoloTable(productData)
+        ? casaSoloFinishPhotos
+        : isCubeTika(productData)
+        ? cubeTikaFinishPhotos
+        : isDuoElsa(productData)
+        ? duoElsaFinishPhotos
+        : isBananeEmpireStone(productData)
+        ? bananeEmpireFinishPhotos
+        : isZarokColumn(productData)
+        ? zarokFinishPhotos
+        : isBayaColumn(productData)
+        ? bayaFinishPhotos
+        : isZinayaColumn(productData)
+        ? zinayaFinishPhotos
+        : null;
+      const folder = isCasaSoloTable(productData) ? soloTableBasseFolder : isCubeTika(productData) ? cubeTikaFolder : isDuoElsa(productData) ? duoElsaFolder : isBananeEmpireStone(productData) ? bananeTableBasseFolder : isZarokColumn(productData) ? zarokFolder : isBayaColumn(productData) ? bayaFolder : isZinayaColumn(productData) ? zinayaFolder : '';
+      const expectedFile = finishPhotos?.[finishId];
+      if (!expectedFile) return getPhotoBasedFinishPhoto(productData, finishId);
+
+      const expectedName = normalizeCatalogSignature(expectedFile);
+      return (productData.photos || []).find(photo => {
+        const source = normalizeCatalogSignature(decodeURIComponent(`${photo.src || ''} ${photo.alt || ''}`));
+        return source.includes(expectedName);
+      }) || {
+        src: encodeURI(`${folder}/${expectedFile}`),
+        alt: expectedFile.replace(/\.[^.]+$/, '')
+      };
+    }
+
     function isExcludedCatalogProduct(productData) {
       const source = normalizeCatalogText(`${productData.slug || ''} ${productData.title || ''} ${productData.coverAlt || ''} ${productData.cover || ''}`)
         .replace(/[^a-z0-9]+/g, ' ')
@@ -1526,6 +1957,9 @@
         ['sofia', 'table', 'marbre', 'noir', 'khenifra'],
         ['table', 'de', 'repas', 'massa'],
         ['table', 'massa', 'chene', 'noir'],
+        ['table', 'de', 'repas', 'java'],
+        ['table', 'a', 'manger', 'java'],
+        ['table', 'repas', 'java'],
         ['table', 'de', 'repas', 'travertin', 'lana'],
         ['travertin', 'lana', 'mobilier'],
         ['romy'],
@@ -1546,8 +1980,13 @@
 
         // ==== Suppressions demandées ====
         ['table', 'basse', 'astra'],
+        ['table', 'basse', 'sahel'],
         ['table', 'basse', 'sahel', 'chene'],
         ['table', 'basse', 'sahel', 'chene', 'table', 'basse'],
+        ['table', 'basse', 'wallen', 'travertin', 'bois'],
+        ['tables', 'basses', 'duo', 'celya', 'bois'],
+        ['table', 'walie'],
+        ['table', 'a', 'manger', 'hardstone', 'celia'],
         ['table', 'basse', 'suma', 'beige'],
         ['tables', 'basses', 'suma', 'beige'],
         ['table', 'basse', 'moka', 'cire', 'bois'],
@@ -1556,7 +1995,34 @@
         ['travertin', 'zaho'],
         ['tables', 'basses', 'travertin', 'tessa'],
         ['table', 'basse', 'travertin', 'tessa'],
-        ['travertin', 'tessa', 'noir', 'royal']
+        ['travertin', 'tessa', 'noir', 'royal'],
+        ['balzac'],
+        ['table', 'a', 'manger', 'vert', 'guatemala', 'vue'],
+        ['table', 'de', 'repas', 'vert', 'guatemala', 'vue'],
+        ['table', 'a', 'manger', 'blanc', 'ibiza', '4', 'personnes'],
+        ['table', 'a', 'manger', 'blanc', 'ibiza', '5800'],
+        ['duo', 'crema', 'royale'],
+        ['duo', 'travertin', 'table', 'basse'],
+        ['duo', 'blanc', 'ibiza'],
+        ['duo', 'crema', 'marfil', 'tables', 'basses'],
+        ['duo', 'taza', 'naturel'],
+        ['tables', 'basses', 'duo', 'dana'],
+        ['tables', 'basses', 'duo', 'wallen'],
+        ['tables', 'basses', 'travertin', 'etoile'],
+        ['travertin', 'etoile', 'mobilier'],
+        ['trio', 'crema', 'royale'],
+        ['trio', 'gris', 'thundra'],
+        ['trio', 'tables', 'basses', 'travertin', 'nouma'],
+        ['travertin', 'nouma'],
+        ['banane', 'noir', 'absolu', 'bois'],
+        ['banane', 'blanc', 'ibiza', 'bois'],
+        ['crema', 'marfil', 'table', 'basse'],
+        ['taza', 'naturel', 'table', 'basse'],
+        ['olivera'],
+        ['table', 'a', 'manger', 'crema', 'royale'],
+        ['table', 'manger', 'crema', 'royal'],
+        ['table', 'a', 'manger', '4', 'personnes'],
+        ['table', 'a', 'manger', '4', 'jpeg']
       ].some(pattern => pattern.every(word => source.includes(word)));
     }
 
@@ -1564,7 +2030,9 @@
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('slug');
     const catalog = readCatalog();
-    const product = catalog.products.find(item => item.slug === slug);
+    const selectedProduct = readSelectedProduct();
+    const product = (selectedProduct && selectedProduct.slug === slug ? sanitizeCatalogProduct(selectedProduct) : null)
+      || catalog.products.find(item => item.slug === slug);
 
     if (!slug || !product) {
       renderMissingState();
@@ -1591,6 +2059,15 @@
       }
     }
 
+    function readSelectedProduct() {
+      try {
+        const saved = JSON.parse(window.sessionStorage.getItem(selectedProductStorageKey) || 'null');
+        return saved && typeof saved === 'object' ? saved : null;
+      } catch (error) {
+        return null;
+      }
+    }
+
     function renderMissingState() {
       page.innerHTML = `
         <section class="empty-state">
@@ -1610,6 +2087,36 @@
     function getSafeImageSrc(src) {
       const value = String(src || '').trim();
       return value && !value.includes('${') ? value : fallbackImage;
+    }
+
+    function isVideoMedia(media) {
+      return /\.(mp4|webm|ogg)(?:[?#].*)?$/i.test(String(media?.src || media || ''));
+    }
+
+    function renderMainMedia(media, productData) {
+      const mediaSrc = getSafeImageSrc(media?.src);
+      const mediaAlt = media?.alt || productData.coverAlt || productData.title;
+      if (isVideoMedia(media)) {
+        return `
+              <video id="main-product-media" controls muted playsinline preload="metadata" aria-label="${mediaAlt}">
+                <source src="${mediaSrc}" type="video/mp4" />
+              </video>`;
+      }
+
+      return `<img id="main-product-media" src="${mediaSrc}" alt="${mediaAlt}" />`;
+    }
+
+    function renderThumbMedia(media) {
+      const mediaSrc = getSafeImageSrc(media?.src);
+      const mediaAlt = media?.alt || '';
+      if (isVideoMedia(media)) {
+        return `
+          <video muted playsinline preload="metadata" aria-label="${mediaAlt}">
+            <source src="${mediaSrc}" type="video/mp4" />
+          </video>`;
+      }
+
+      return `<img src="${mediaSrc}" alt="${mediaAlt}" loading="lazy" />`;
     }
 
     function getShopifyButtonOptions() {
@@ -1727,10 +2234,13 @@
     }
 
     function renderProductPage(productData, finishes) {
-      const activeFinishId = resolveActiveFinishId(productData, finishes);
-      const activeFinish = finishes.find(finish => finish.id === activeFinishId) || null;
-      const finishCards = finishes.map((finish, index) => renderColorOption(finish, activeFinishId, index)).join('');
-      const coverSrc = getSafeImageSrc(productData.cover);
+      const productFinishes = getProductFinishes(productData, finishes);
+      const activeFinishId = resolveActiveFinishId(productData, productFinishes);
+      const activeFinish = productFinishes.find(finish => finish.id === activeFinishId) || null;
+      const finishCards = productFinishes.map((finish, index) => renderColorOption(finish, activeFinishId, index)).join('');
+      const galleryPhotos = isCubeTika(productData) ? cubeTikaColorPhotos : isDuoElsa(productData) ? duoElsaColorPhotos : isBananeEmpireStone(productData) ? bananeEmpireColorPhotos : isZarokColumn(productData) ? zarokColorPhotos : isBayaColumn(productData) ? bayaColorPhotos : isZinayaColumn(productData) ? zinayaColorPhotos : normalizeCatalogSignature(`${productData.title || ''} ${productData.slug || ''}`).includes('celio') ? celioDiningPhotos : productData.photos;
+      const galleryPhotoCount = galleryPhotos.length || productData.photoCount || 0;
+      const coverMedia = galleryPhotos?.[0] || {src: productData.cover, alt: productData.coverAlt || productData.title};
       const technicalSheets = getTechnicalSheets(productData);
       const technicalSheetButton = technicalSheets.length
         ? '<div class="technical-sheet-actions"><button class="btn btn-secondary" type="button" id="technical-sheet-toggle">Voir plus de modele</button></div>'
@@ -1749,9 +2259,9 @@
         </section>
         `
         : '';
-      const thumbnails = productData.photos.map((photo, index) => `
+      const thumbnails = galleryPhotos.map((photo, index) => `
         <button class="thumb-button${index === 0 ? ' is-active' : ''}" type="button" data-thumb-index="${index}">
-          <img src="${getSafeImageSrc(photo.src)}" alt="${photo.alt}" loading="lazy" />
+          ${renderThumbMedia(photo)}
           <span class="thumb-caption">Vue ${index + 1}</span>
         </button>
       `).join('');
@@ -1759,6 +2269,7 @@
       const measurementCards = productData.category === 'hardstone-ceramiques' ? '' : renderMeasurementCards(productData);
       const measurementHint = buildMeasurementHint(productData);
       const ceramicSizingPanel = renderCeramicSizingPanel(productData);
+      const woodOptionPanel = renderWoodOptionPanel(productData);
       const measurementFormSection = productData.category === 'hardstone-ceramiques'
         ? measurementFields
         : `
@@ -1776,8 +2287,8 @@
         <section class="hero-grid">
           <div class="gallery-panel">
             <div class="main-visual">
-              <img id="main-product-image" src="${coverSrc}" alt="${productData.coverAlt || productData.title}" />
-              <span class="visual-count">${productData.photoCount} photo${productData.photoCount > 1 ? 's' : ''}</span>
+              ${renderMainMedia(coverMedia, productData)}
+              <span class="visual-count">${galleryPhotoCount} vue${galleryPhotoCount > 1 ? 's' : ''}</span>
             </div>
             <div class="thumb-grid">${thumbnails}</div>
           </div>
@@ -1787,6 +2298,7 @@
             <h1>${productData.title}</h1>
             <p class="lead">${productData.description || 'Choisissez la couleur souhaitee, indiquez vos dimensions sur commande et envoyez votre demande pour ce produit.'}</p>
             ${ceramicSizingPanel}
+            ${woodOptionPanel}
 
             <div class="meta-grid">
               <div class="meta-card">
@@ -1800,7 +2312,7 @@
               </div>
               <div class="meta-card">
                 <small>Galerie</small>
-                <strong>${productData.photoCount} vue${productData.photoCount > 1 ? 's' : ''}</strong>
+                <strong>${galleryPhotoCount} vue${galleryPhotoCount > 1 ? 's' : ''}</strong>
               </div>
             </div>
             ${technicalSheetButton}
@@ -1870,52 +2382,14 @@
         image.addEventListener('error', handleImageError);
       });
 
-      bindGallery(productData.photos);
+      bindGallery(galleryPhotos);
       bindTechnicalSheet();
-      bindQuoteForm(productData, finishes);
+      bindQuoteForm(productData, productFinishes);
       mountShopifyBuyButtons(page);
     }
 
     function getTechnicalSheets(productData) {
-      const source = normalizeCatalogSignature([
-        productData.category,
-        productData.title,
-        productData.slug,
-        productData.cover,
-        productData.coverAlt,
-        ...(productData.photos || []).flatMap(photo => [photo.src, photo.alt])
-      ].join(' '));
-      const sheets = [];
-
-      if (productData.category === 'hardstone-ceramiques') {
-        sheets.push({
-          src: hardstoneTechnicalSheet,
-          alt: 'Fiche technique tables hardstones'
-        });
-      }
-
-      if (
-        source.includes('blanc ibiza')
-        && (
-          source.includes('4 personnes rond') ||
-          source.includes('personnes rond') ||
-          source.includes('table manger blanc ibiza 4 personnes') ||
-          source.includes('blac ibiza table manger 4 personnes')
-        )
-      ) {
-        sheets.push({
-          src: blancIbizaTechnicalSheet,
-          alt: 'Fiche technique table manger blanc Ibiza 4 personnes'
-        });
-      }
-
-      const seen = new Set();
-      return sheets.filter(sheet => {
-        const key = sheet.src.toLowerCase();
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
+      return [];
     }
 
     function createMeasurementFields(productData) {
@@ -1970,6 +2444,40 @@
                 <span class="ceramic-size-card">
                   <strong>${option.people}</strong>
                   <b>${option.price} dh</b>
+                </span>
+              </label>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderWoodOptionPanel(productData) {
+      if (!hasWoodOption(productData)) return '';
+
+      const options = [
+        {label: 'Avec bois', value: 'Avec bois'},
+        {label: 'Sans bois', value: 'Sans bois'}
+      ];
+
+      return `
+        <div class="ceramic-sizing-panel" aria-label="Choisir avec bois ou sans bois">
+          <div class="ceramic-sizing-title">
+            <strong>Option table</strong>
+            <span>Choisissez la version souhaitee avant l'envoi.</span>
+          </div>
+          <div class="ceramic-size-grid">
+            ${options.map((option, index) => `
+              <label class="ceramic-size-option">
+                <input
+                  type="radio"
+                  name="wood_option"
+                  value="${option.value}"
+                  ${index === 0 ? 'checked' : ''}
+                />
+                <span class="ceramic-size-card">
+                  <strong>${option.label}</strong>
+                  <b>Sur commande</b>
                 </span>
               </label>
             `).join('')}
@@ -2050,7 +2558,7 @@
 
       return `
         <label class="color-option" style="--stagger: ${index};">
-          <input type="radio" name="finish" value="${finish.label}" ${isCurrent ? 'checked' : ''} />
+          <input type="radio" name="finish" value="${finish.label}" data-finish-id="${finish.id}" ${isCurrent ? 'checked' : ''} />
           <article class="finish-card${isCurrent ? ' is-current' : ''}" data-family="${finish.family}">
             <div class="finish-media">${media}</div>
             <div class="finish-copy">
@@ -2067,8 +2575,9 @@
     }
 
     function bindGallery(photos) {
-      const mainImage = document.getElementById('main-product-image');
+      const mainVisual = page.querySelector('.main-visual');
       const buttons = Array.from(page.querySelectorAll('[data-thumb-index]'));
+      if (!mainVisual) return;
 
       buttons.forEach(button => {
         button.addEventListener('click', () => {
@@ -2076,8 +2585,12 @@
           const targetPhoto = photos[index];
           if (!targetPhoto) return;
 
-          mainImage.src = getSafeImageSrc(targetPhoto.src);
-          mainImage.alt = targetPhoto.alt;
+          const visualCount = mainVisual.querySelector('.visual-count');
+          mainVisual.innerHTML = `${renderMainMedia(targetPhoto, {title: targetPhoto.alt, coverAlt: targetPhoto.alt})}${visualCount ? visualCount.outerHTML : ''}`;
+          const image = mainVisual.querySelector('img');
+          if (image) {
+            image.addEventListener('error', handleImageError);
+          }
 
           buttons.forEach(item => item.classList.remove('is-active'));
           button.classList.add('is-active');
@@ -2126,6 +2639,7 @@
         const data = new FormData(form);
         const fallbackFinish = finishes.find(item => item.id === productData.finishId)?.label || productData.colorLabel;
         const finishLabel = String(data.get('finish') || fallbackFinish || '').trim();
+        const woodOption = String(data.get('wood_option') || '').trim();
         const measurementEntries = Array.from(data.entries())
           .filter(([key, value]) => measurementKeys.includes(key) && String(value).trim() !== '')
           .map(([key, value]) => key === 'capacite' ? `${readableMeasurementLabel(key)} : ${String(value).trim()}` : `${readableMeasurementLabel(key)} : ${String(value).trim()} cm`);
@@ -2137,6 +2651,7 @@
           clientEmail: String(data.get('client_email') || '').trim(),
           clientCity: String(data.get('client_city') || '').trim(),
           clientMessage: String(data.get('client_message') || '').trim(),
+          woodOption,
           measurementEntries
         };
       }
@@ -2147,9 +2662,12 @@
           'Bonjour Empire Stone,',
           '',
           `Je souhaite recevoir un devis pour le produit "${productData.title}".`,
+          '',
+          'Selection actuelle :',
           `Categorie : ${productData.categoryLabel}.`,
           measurementReference.length ? `Reference du modele : ${measurementReference.join(' | ')}.` : '',
           `Couleur / finition choisie : ${state.finishLabel}.`,
+          state.woodOption ? `Option table : ${state.woodOption}.` : '',
           state.measurementEntries.length
             ? `Mesures demandees : ${state.measurementEntries.join(', ')}.`
             : 'Mesures : sur commande, a definir avec vous.',
@@ -2161,7 +2679,7 @@
           state.clientPhone ? `Telephone : ${state.clientPhone}` : '',
           state.clientEmail ? `Email : ${state.clientEmail}` : '',
           '',
-          'Merci de me communiquer le delai et la disponibilite.'
+          'Merci de me communiquer le prix, le delai de fabrication et la disponibilite.'
         ].filter(Boolean);
 
         return lines.join('\n');
@@ -2175,6 +2693,7 @@
           `Produit : ${productData.title}`,
           measurementReference.length ? `Reference : ${measurementReference.join(' | ')}` : '',
           `Couleur : ${state.finishLabel}`,
+          state.woodOption ? `Option table : ${state.woodOption}` : '',
           state.measurementEntries.length
             ? `Mesures : ${state.measurementEntries.join(' | ')}`
             : 'Mesures : sur commande',
@@ -2191,6 +2710,9 @@
       }
 
       function updateSelectedFinishUI(finishLabel) {
+        const selectedFinishInput = form.querySelector('input[name="finish"]:checked');
+        const selectedFinishId = selectedFinishInput?.dataset.finishId || '';
+
         if (selectedFinishLabel) {
           selectedFinishLabel.textContent = finishLabel;
         }
@@ -2213,6 +2735,26 @@
             badge.textContent = isChecked ? 'Selectionnee' : 'Disponible';
           }
         });
+
+        if (selectedFinishId) {
+          const selectedPhoto = getFinishPhoto(productData, selectedFinishId);
+          const mainVisual = page.querySelector('.main-visual');
+          if (selectedPhoto && mainVisual) {
+            const visualCount = mainVisual.querySelector('.visual-count');
+            mainVisual.innerHTML = `${renderMainMedia(selectedPhoto, {title: finishLabel, coverAlt: selectedPhoto.alt || finishLabel})}${visualCount ? visualCount.outerHTML : ''}`;
+            const image = mainVisual.querySelector('img');
+            if (image) {
+              image.addEventListener('error', handleImageError);
+            }
+          }
+
+          Array.from(page.querySelectorAll('[data-thumb-index]')).forEach(button => {
+            const index = Number.parseInt(button.dataset.thumbIndex || '0', 10);
+            const photo = productData.photos?.[index];
+            const isSelectedPhoto = selectedPhoto && photo && getSafeImageSrc(photo.src) === getSafeImageSrc(selectedPhoto.src);
+            button.classList.toggle('is-active', Boolean(isSelectedPhoto));
+          });
+        }
       }
 
       function syncWhatsappPreview() {
@@ -2260,6 +2802,7 @@
           price: dynamicPrice,
           options: {
             'Couleur': state.finishLabel,
+            ...(state.woodOption ? {'Option table': state.woodOption} : {}),
             ...Object.fromEntries(
               state.measurementEntries.map(e => e.split(' : ').map(s => s.trim()))
             )
